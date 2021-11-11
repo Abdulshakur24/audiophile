@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope&display=swap");
+* {
+  font-family: "Manrope", sans-serif;
+}
+
+@import "variables";
+@import "mixins";
+@import "global";
+@import "./home/home";
+@import "./categories/home";
+@import "./products/home";
+@import "./checkout/checkout.scss";
+@import "./Registration/register";
+
+:root {
+  --toastify-color-info: rgb(0, 0, 0) !important;
+  --toastify-toast-width: 340px !important;
+
+  @include breakpoint-up("large") {
+    --toastify-toast-width: 460px !important;
+  }
+}
+.Toastify__toast-container--top-center {
+  top: 6rem !important;
+  @include breakpoint-up("large") {
+    top: 6rem !important;
+  }
+}
