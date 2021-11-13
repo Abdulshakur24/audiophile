@@ -7,7 +7,7 @@ axios.defaults.headers.common = {
 };
 
 const instance = axios.create({
-  baseURL: "http://localhost:5010/",
+  baseURL: "https://audiophile-e-commerce.herokuapp.com/",
 });
 
 export default instance;

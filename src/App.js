@@ -21,6 +21,7 @@ import Checkout from "./components/carts/Checkout";
 import Register from "./components/Registration/Register";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Histories from "./components/history/Histories";
 
 function App() {
   const { pathname } = useLocation();
@@ -51,6 +52,7 @@ function App() {
         <Route path="/products/earphones/yx1" component={yx1} />
         <Route path="/checkout" component={Checkout} />
         <Route path="/register" component={Register} />
+        <Route path="/history" component={Histories} />
         <Route>
           <div>Page not found</div>
         </Route>

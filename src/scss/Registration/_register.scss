@@ -34,26 +34,6 @@
       max-width: 460px;
       width: 100%;
 
-      .error-display {
-        border-radius: 4px;
-        margin-bottom: 0.25rem;
-        height: 50px;
-        background-color: red;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        &.slideOut {
-          animation: slideOut 300ms forwards;
-        }
-        .slideIn {
-          animation: slideIn 300ms backwards;
-        }
-        .error {
-          color: $white;
-        }
-      }
-
       @keyframes slideIn {
         from {
           transform: translateY(-100%);

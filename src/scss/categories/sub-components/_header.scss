@@ -65,8 +65,8 @@
           }
         }
 
-        h4 {
-          font-size: 28.6px;
+        h1 {
+          // font-size: 28.6px;
           margin-left: 2rem;
           cursor: pointer;
           @include breakpoint-up(medium) {

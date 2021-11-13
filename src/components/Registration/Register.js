@@ -13,6 +13,7 @@ import { loadUser } from "../../app-redux/features/User";
 import { LoadingButton } from "@mui/lab";
 import { Redirect } from "react-router-dom";
 import { errorStatus } from "../../handleErrors/requests";
+import { toast } from "react-toastify";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -72,16 +73,37 @@ function Register() {
         .then((response) => {
           const data = response.data;
           sessionStorage.setItem("token", data?.token);
-
+          toastifyInfo(`Welcome back ${data.name}!`);
           dispatch(loadUser(data));
         })
         .catch((error) => {
-          setLgError(error.response.status);
-          setRgError(error.response.status);
+          if (typeof error.response.data === "string")
+            return toastifyError(error.response.data);
+          toastifyError(errorStatus(error));
         });
     }
     return;
   }, [dispatch]);
+
+  const toastifyError = (error) => {
+    toast.error(error, {
+      position: "top-center",
+      autoClose: 4500,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+    });
+  };
+
+  const toastifyInfo = (info) => {
+    toast.info(info, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+    });
+  };
 
   const handleLogin = (name) => (e) => {
     setLgError("");
@@ -101,16 +123,16 @@ function Register() {
       .post("/user/login", userLogin)
       .then((response) => {
         const data = response.data;
-        console.log(data);
         setLgLoading(false);
 
         sessionStorage.setItem("id", data.id);
         sessionStorage.setItem("token", data.token);
+        toastifyInfo(`Welcome ${data.name}!`);
         dispatch(loadUser(data));
       })
       .catch((error) => {
         setLgLoading(false);
-        setLgError(errorStatus(error));
+        toastifyError(errorStatus(error));
       });
   };
 
@@ -124,11 +146,12 @@ function Register() {
         setRgLoading(false);
         sessionStorage.setItem("id", data.id);
         sessionStorage.setItem("token", data.token);
+        toastifyInfo(`Welcome ${data.name}!`);
         dispatch(loadUser(data));
       })
       .catch((error) => {
-        setRgError(errorStatus(error));
         setRgLoading(false);
+        toastifyError(errorStatus(error));
       });
   };
 

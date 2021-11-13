@@ -6,25 +6,30 @@ import { openOrCloseCheckoutModal } from "../../app-redux/features/Dialogs";
 import TextField from "@material-ui/core/TextField";
 import { ThemeProvider } from "@material-ui/styles";
 import { LoadingButton } from "@mui/lab";
+import { errorStatus } from "../../handleErrors/requests";
+import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 function Payment({ classes, theme }) {
   const [processing, setProcessing] = useState(false);
   const [complete, setComplete] = useState(false);
 
-  const [error, setError] = useState("");
   const stripe = useStripe();
   const elements = useElements();
   const cartsArr = useSelector((state) => state.carts.carts);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const getTotalPriceFromCarts = () =>
     cartsArr
       .map(({ price, quantity }) => price * quantity)
       .reduce((a, b) => a + b, 0);
 
+  const userState = useSelector((state) => state.user.user);
   const [users, setUsers] = useState({
-    name: "",
-    email: "",
+    userId: userState?.id,
+    name: userState?.name,
+    email: userState?.email,
     phone: "",
     address: "",
     zipCode: "",
@@ -33,26 +38,65 @@ function Payment({ classes, theme }) {
     total: getTotalPriceFromCarts() + 50,
   });
 
-  console.log(users.total);
-
   const handleChange = (event) => {
     setComplete(event.complete);
-    setError(event.error ? event.error.message : "");
+    console.log(event);
+    event.error && toastifyError(event.error.message);
   };
 
   const openModal = () => {
     dispatch(openOrCloseCheckoutModal(true));
     window.scrollTo(0, 0);
   };
+  const closeModal = () => dispatch(openOrCloseCheckoutModal(false));
 
   const { name, email, phone, address, zipCode, city, country } = users;
   const handleChangeField = (name) => (e) => {
     setUsers({ ...users, [name]: e.target.value });
   };
+  const toastifyError = (error) => {
+    toast.error(error, {
+      position: "top-center",
+      autoClose: 4500,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+    });
+  };
+  const toastifySucces = (success) => {
+    toast.success(success, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+    });
+  };
+
+  const toastifyInfo = () => {
+    setTimeout(() => {
+      toast.info(
+        "Please note that this is just a Demo site, so don't expect an email from us.",
+        {
+          position: "bottom-right",
+          autoClose: 6000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+        }
+      );
+    }, 3000);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setProcessing(true);
+
+    const token = sessionStorage.getItem("token");
+    axios.defaults.headers.common = {
+      ...axios.defaults.headers.common,
+      Authorization: `Bearer ${token}`,
+    };
 
     axios
       .post(`/payments`, users)
@@ -67,24 +111,32 @@ function Payment({ classes, theme }) {
           })
           .then(({ paymentIntent }) => {
             console.log(paymentIntent);
+            setProcessing(false);
+            toastifySucces("Thank you for shopping with us!");
             openModal();
-            setProcessing(false);
+            toastifyInfo();
+            setTimeout(() => {
+              closeModal();
+              history.push("/history");
+            }, 10000);
           })
-          .catch((err) => {
-            setProcessing(false);
-            setError(err);
+          .catch((error) => {
+            if (typeof error.response.data === "string")
+              return toastifyError(error.response.data);
+            toastifyError(errorStatus(error));
           });
       })
-      .catch((err) => {
-        setProcessing(false);
-        setError(err);
+      .catch((error) => {
+        if (typeof error.response.data === "string")
+          return toastifyError(error.response.data);
+        toastifyError(errorStatus(error));
       });
   };
 
   return (
     <div className="payment">
       <ThemeProvider theme={theme}>
-        <h6>BILLING DETAILS</h6>
+        <h6 onClick={() => openModal()}>BILLING DETAILS</h6>
         <form id="checkout_form" onSubmit={handleSubmit}>
           <div className="billings flex">
             <TextField
@@ -164,7 +216,6 @@ function Payment({ classes, theme }) {
           </div>
           <h6>PAYMENT DETAILS</h6>
           <CardElement onChange={handleChange} />
-          {error && <p>{error}</p>}
           <LoadingButton
             loading={processing}
             disabled={processing || !complete || !cartsArr.length}

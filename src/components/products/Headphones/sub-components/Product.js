@@ -4,10 +4,12 @@ import { useHistory } from "react-router";
 import { addOrUpdateCart } from "../../../../app-redux/features/Carts";
 import useReactSimpleMatchMedia from "react-simple-matchmedia";
 import { toast } from "react-toastify";
+import { openOrCloseCart } from "../../../../app-redux/features/Dialogs";
 
 function Product(props) {
   const history = useHistory();
   const dispatch = useDispatch();
+
   const addToCart = () => {
     dispatch(addOrUpdateCart(props.carts));
     toastify();
@@ -17,8 +19,9 @@ function Product(props) {
 
   const toastify = () =>
     toast.info(`Added ${props.name}.`, {
-      position: "top-center",
+      position: "top-right",
       autoClose: 2500,
+      onClick: () => dispatch(openOrCloseCart(true)),
     });
 
   return (
