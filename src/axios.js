@@ -5,9 +5,9 @@ axios.defaults.headers.common = {
   ...axios.defaults.headers.common,
   Authorization: `Bearer ${token}`,
 };
-// "https://audiophile-e-commerce.herokuapp.com/"
+// "http://localhost:5010"
 const instance = axios.create({
-  baseURL: "http://localhost:5010",
+  baseURL: "https://audiophile-e-commerce.herokuapp.com/",
 });
 
 export default instance;
