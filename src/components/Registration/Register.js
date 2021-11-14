@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "../../app-redux/features/User";
 import { LoadingButton } from "@mui/lab";
 import { Redirect } from "react-router-dom";
-import { errorStatus } from "../../handleErrors/requests";
 import { toast } from "react-toastify";
 
 const useStyles = makeStyles((theme) =>
@@ -47,14 +46,13 @@ function Register() {
     rg_email: "",
     rg_password: "",
   });
+
+  const user = useSelector((state) => state.user.user);
+
   const [state, setState] = useState(true);
   const [rg_show, setRgShow] = useState(false);
   const [lg_show, setLgShow] = useState(false);
   const [lg_loading, setLgLoading] = useState(false);
-  const user = useSelector((state) => state.user.user);
-
-  const [rg_error, setRgError] = useState("");
-  const [lg_error, setLgError] = useState("");
   const [rg_loading, setRgLoading] = useState(false);
 
   const dispatch = useDispatch();
@@ -67,9 +65,8 @@ function Register() {
     };
 
     if (token) {
-      const id = sessionStorage.getItem("id");
       axios
-        .post("/token", { id }, { method: "POST" })
+        .post("/token", { token }, { method: "POST" })
         .then((response) => {
           const data = response.data;
           sessionStorage.setItem("token", data?.token);
@@ -77,9 +74,7 @@ function Register() {
           dispatch(loadUser(data));
         })
         .catch((error) => {
-          if (typeof error.response.data === "string")
-            return toastifyError(error.response.data);
-          toastifyError(errorStatus(error));
+          toastifyError(error.response.data);
         });
     }
     return;
@@ -90,8 +85,10 @@ function Register() {
       position: "top-center",
       autoClose: 4500,
       hideProgressBar: false,
+
       closeOnClick: false,
       pauseOnHover: false,
+      closeButton: true,
     });
   };
 
@@ -106,13 +103,12 @@ function Register() {
   };
 
   const handleLogin = (name) => (e) => {
-    setLgError("");
     setUserLogin({ ...userLogin, [name]: e.target.value });
   };
   const handleRegister = (name) => (e) => {
-    setRgError("");
     setUserRegister({ ...userRegister, [name]: e.target.value });
   };
+
   const { lg_email, lg_password } = userLogin;
   const { rg_name, rg_email, rg_password } = userRegister;
 
@@ -123,16 +119,15 @@ function Register() {
       .post("/user/login", userLogin)
       .then((response) => {
         const data = response.data;
-        setLgLoading(false);
 
-        sessionStorage.setItem("id", data.id);
         sessionStorage.setItem("token", data.token);
         toastifyInfo(`Welcome ${data.name}!`);
+        setLgLoading(false);
         dispatch(loadUser(data));
       })
       .catch((error) => {
         setLgLoading(false);
-        toastifyError(errorStatus(error));
+        toastifyError(error.response.data);
       });
   };
 
@@ -144,14 +139,13 @@ function Register() {
       .then((response) => {
         const data = response.data;
         setRgLoading(false);
-        sessionStorage.setItem("id", data.id);
         sessionStorage.setItem("token", data.token);
         toastifyInfo(`Welcome ${data.name}!`);
         dispatch(loadUser(data));
       })
       .catch((error) => {
         setRgLoading(false);
-        toastifyError(errorStatus(error));
+        toastifyError(error.response.data);
       });
   };
 
@@ -164,123 +158,103 @@ function Register() {
         </div>
       </header>
       <ThemeProvider theme={theme}>
-        <div className="body">
-          <div>
+        <div className="register-body">
+          <div className="container">
             {state ? (
-              <div
-                className={`error-display ${lg_error ? "slideIn" : "slideOut"}`}
-              >
-                <p className="error">{lg_error}</p>
-              </div>
+              <form onSubmit={handleSubmitLogin}>
+                <h1>Login</h1>
+                <TextField
+                  className={`${classes} a`}
+                  label="Email"
+                  variant="outlined"
+                  id="mui-theme-provider-outlined-input-email"
+                  type="email"
+                  required
+                  onChange={handleLogin("lg_email")}
+                  value={lg_email}
+                />
+                <TextField
+                  className={`${classes} a`}
+                  label="Password"
+                  variant="outlined"
+                  id="mui-theme-provider-outlined-input-password"
+                  type={lg_show ? "text" : "password"}
+                  required
+                  onChange={handleLogin("lg_password")}
+                  value={lg_password}
+                />
+
+                <div className="checkbox">
+                  <input type="checkbox" onChange={() => setLgShow(!lg_show)} />
+                  <label>{lg_show ? "Hide" : "Show"} password</label>
+                </div>
+
+                <p>
+                  Don't have an account?{" "}
+                  <em onClick={() => setState(false)}>Register here</em>
+                </p>
+
+                <LoadingButton
+                  type="submit"
+                  loading={lg_loading}
+                  variant="outlined"
+                >
+                  Login
+                </LoadingButton>
+              </form>
             ) : (
-              <div
-                className={`error-display ${rg_error ? "slideIn" : "slideOut"}`}
-              >
-                <p className="error">{rg_error}</p>
-              </div>
+              <form onSubmit={handleSubmitRegister}>
+                <h1>Register</h1>
+                <TextField
+                  className={`${classes} a`}
+                  label="Name"
+                  variant="outlined"
+                  id="mui-theme-provider-outlined-input"
+                  type="text"
+                  required
+                  onChange={handleRegister("rg_name")}
+                  value={rg_name}
+                />
+                <TextField
+                  className={`${classes} a`}
+                  label="Email"
+                  variant="outlined"
+                  id="mui-theme-provider-outlined-input"
+                  type="email"
+                  required
+                  onChange={handleRegister("rg_email")}
+                  value={rg_email}
+                />
+                <TextField
+                  className={`${classes} a`}
+                  label="Password"
+                  variant="outlined"
+                  id="mui-theme-provider-outlined-input"
+                  type={rg_show ? "text" : "password"}
+                  required
+                  error={false}
+                  onChange={handleRegister("rg_password")}
+                  value={rg_password}
+                />
+
+                <div className="checkbox">
+                  <input type="checkbox" onChange={() => setRgShow(!rg_show)} />
+                  <label>{rg_show ? "Hide" : "Show"} password</label>
+                </div>
+                <p>
+                  Already have an account?
+                  <em onClick={() => setState(true)}> Login here</em>
+                </p>
+
+                <LoadingButton
+                  loading={rg_loading}
+                  variant="outlined"
+                  type="submit"
+                >
+                  Register
+                </LoadingButton>
+              </form>
             )}
-            <div className="container">
-              <h1>{state ? "Login" : "Register"}</h1>
-              {state ? (
-                <form onSubmit={handleSubmitLogin}>
-                  <TextField
-                    className={`${classes} a`}
-                    label="Email"
-                    variant="outlined"
-                    id="mui-theme-provider-outlined-input-email"
-                    type="email"
-                    required
-                    onChange={handleLogin("lg_email")}
-                    value={lg_email}
-                  />
-                  <TextField
-                    className={`${classes} a`}
-                    label="Password"
-                    variant="outlined"
-                    id="mui-theme-provider-outlined-input-password"
-                    type={lg_show ? "text" : "password"}
-                    required
-                    onChange={handleLogin("lg_password")}
-                    value={lg_password}
-                  />
-
-                  <div className="checkbox">
-                    <input
-                      type="checkbox"
-                      onChange={() => setLgShow(!lg_show)}
-                    />
-                    <label>{lg_show ? "Hide" : "Show"} password</label>
-                  </div>
-
-                  <p>
-                    Don't have an account?{" "}
-                    <em onClick={() => setState(false)}>Register here</em>
-                  </p>
-
-                  <LoadingButton
-                    type="submit"
-                    loading={lg_loading}
-                    variant="outlined"
-                  >
-                    Login
-                  </LoadingButton>
-                </form>
-              ) : (
-                <form onSubmit={handleSubmitRegister}>
-                  <TextField
-                    className={`${classes} a`}
-                    label="Name"
-                    variant="outlined"
-                    id="mui-theme-provider-outlined-input"
-                    type="text"
-                    required
-                    onChange={handleRegister("rg_name")}
-                    value={rg_name}
-                  />
-                  <TextField
-                    className={`${classes} a`}
-                    label="Email"
-                    variant="outlined"
-                    id="mui-theme-provider-outlined-input"
-                    type="email"
-                    required
-                    onChange={handleRegister("rg_email")}
-                    value={rg_email}
-                  />
-                  <TextField
-                    className={`${classes} a`}
-                    label="Password"
-                    variant="outlined"
-                    id="mui-theme-provider-outlined-input"
-                    type={rg_show ? "text" : "password"}
-                    required
-                    error={false}
-                    onChange={handleRegister("rg_password")}
-                    value={rg_password}
-                  />
-
-                  <div className="checkbox">
-                    <input
-                      type="checkbox"
-                      onChange={() => setRgShow(!rg_show)}
-                    />
-                    <label>{rg_show ? "Hide" : "Show"} password</label>
-                  </div>
-                  <p>
-                    Already have an account?
-                    <em onClick={() => setState(true)}> Login here</em>
-                  </p>
-
-                  <LoadingButton
-                    loading={rg_loading}
-                    variant="outlined"
-                    type="submit"
-                  >
-                    Register
-                  </LoadingButton>
-                </form>
-              )}
-            </div>
           </div>
         </div>
       </ThemeProvider>
