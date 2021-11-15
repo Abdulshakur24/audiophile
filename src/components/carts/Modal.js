@@ -15,9 +15,8 @@ function Modal() {
 
   const goBackHome = () => {
     dispatch(openOrCloseCheckoutModal(false));
-    // setTimeout(function () {
+
     history.push("/");
-    // }, 0);
   };
 
   const getTotal = () =>

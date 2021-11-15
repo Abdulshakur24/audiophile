@@ -1,5 +1,5 @@
 import React from "react";
-import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
+import { ReactComponent as CartIcon } from "../../../../assets/cartLogo.svg";
 import {
   openOrCloseCart,
   openOrCloseMenu,
@@ -47,7 +47,7 @@ function Header({ title }) {
             onClick={() => dispatch(openOrCloseCart(!isCartOpen))}
             className="right"
           >
-            <ShoppingCartOutlinedIcon className="icon" />
+            <CartIcon className="icon" />
           </div>
         </div>
         <div className="title">

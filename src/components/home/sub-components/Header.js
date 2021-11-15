@@ -1,5 +1,5 @@
 import React from "react";
-import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
+import { ReactComponent as CartIcon } from "../../../assets/cartLogo.svg";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import {
@@ -61,7 +61,7 @@ function Header() {
           className="trolleyIcon"
           onClick={() => dispatch(openOrCloseCart(!isCartOpen))}
         >
-          <ShoppingCartOutlinedIcon />
+          <CartIcon />
         </div>
       </div>
     </header>

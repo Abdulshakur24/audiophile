@@ -1,5 +1,5 @@
 import React from "react";
-import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
+import { ReactComponent as CartIcon } from "../../../../assets/cartLogo.svg";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -41,7 +41,7 @@ function Header() {
             onClick={() => dispatch(openOrCloseCart(!isCartOpen))}
             className="right"
           >
-            <ShoppingCartOutlinedIcon className="icon" />
+            <CartIcon className="icon" />
           </div>
         </div>
       </div>

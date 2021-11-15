@@ -65,15 +65,22 @@ function Register() {
     };
 
     if (token) {
+      setLgLoading(true);
+      setRgLoading(true);
+
       axios
         .post("/token", { token }, { method: "POST" })
         .then((response) => {
           const data = response.data;
           sessionStorage.setItem("token", data?.token);
           toastifyInfo(`Welcome back ${data.name}!`);
+          setLgLoading(false);
+          setRgLoading(false);
           dispatch(loadUser(data));
         })
         .catch((error) => {
+          setLgLoading(false);
+          setRgLoading(false);
           toastifyError(error.response.data);
         });
     }
