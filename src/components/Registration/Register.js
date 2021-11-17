@@ -81,7 +81,7 @@ function Register() {
         .catch((error) => {
           setLgLoading(false);
           setRgLoading(false);
-          toastifyError(error.response.data);
+          toastifyError(error.response?.data);
         });
     }
     return;
@@ -134,7 +134,7 @@ function Register() {
       })
       .catch((error) => {
         setLgLoading(false);
-        toastifyError(error.response.data);
+        toastifyError(error.response?.data);
       });
   };
 
@@ -152,7 +152,7 @@ function Register() {
       })
       .catch((error) => {
         setRgLoading(false);
-        toastifyError(error.response.data);
+        toastifyError(error.response?.data);
       });
   };
 

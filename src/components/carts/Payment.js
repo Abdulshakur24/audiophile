@@ -6,7 +6,6 @@ import { openOrCloseCheckoutModal } from "../../app-redux/features/Dialogs";
 import TextField from "@material-ui/core/TextField";
 import { ThemeProvider } from "@material-ui/styles";
 import { LoadingButton } from "@mui/lab";
-import { errorStatus } from "../../handleErrors/requests";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 
@@ -99,9 +98,9 @@ function Payment({ classes, theme }) {
     };
 
     axios
-      .post(`/payments`, users)
-      .then(async (response) => {
-        const { client_secret } = response.data;
+      .post(`/payments/step-one`, users)
+      .then(async (responseStepOne) => {
+        const { client_secret } = responseStepOne.data;
 
         await stripe
           .confirmCardPayment(client_secret, {
@@ -110,26 +109,39 @@ function Payment({ classes, theme }) {
             },
           })
           .then(({ paymentIntent }) => {
-            console.log(paymentIntent);
-            setProcessing(false);
-            toastifySucces("Thank you for shopping with us!");
-            openModal();
-            toastifyInfo();
-            setTimeout(() => {
-              closeModal();
-              history.push("/history");
-            }, 10000);
+            axios
+              .post("/payments/step-two", {
+                id: paymentIntent.id,
+                date: paymentIntent.created,
+                status: paymentIntent.status,
+              })
+              .then((responseStepTwo) => {
+                axios
+                  .post("/payments/step-three", {
+                    stripeId: paymentIntent.id,
+                    products: cartsArr,
+                  })
+                  .then((responseStepThree) => {
+                    setProcessing(false);
+                    toastifySucces("Thank you for shopping with us!");
+                    openModal();
+                    toastifyInfo();
+                    setTimeout(() => {
+                      closeModal();
+                      history.push("/history");
+                    }, 10000);
+                  });
+              })
+              .catch((error) => {
+                toastifyError(error.response.data);
+              });
           })
           .catch((error) => {
-            if (typeof error.response.data === "string")
-              return toastifyError(error.response.data);
-            toastifyError(errorStatus(error));
+            toastifyError(error.response.data);
           });
       })
       .catch((error) => {
-        if (typeof error.response.data === "string")
-          return toastifyError(error.response.data);
-        toastifyError(errorStatus(error));
+        toastifyError(error.response.data);
       });
   };
 

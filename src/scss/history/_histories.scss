@@ -1,3 +1,26 @@
 .histories {
+  .histories-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      margin: 1rem;
+    }
+    .histories-contents {
+      width: 100%;
+      max-width: 1220px;
+
+      // padding: 1rem;
+      min-height: 800px;
+      max-height: 2000px;
+      overflow-y: auto;
+      // background-color: $white;
+      border-radius: 4px;
+      // box-shadow: 2px 0px 4px 4px rgba(70, 16, 16, 0.2);
+    }
+  }
+
   @import "./history";
 }
