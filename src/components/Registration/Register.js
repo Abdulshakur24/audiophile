@@ -58,7 +58,7 @@ function Register() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     axios.defaults.headers.common = {
       ...axios.defaults.headers.common,
       Authorization: `Bearer ${token}`,
@@ -72,7 +72,7 @@ function Register() {
         .post("/token", { token }, { method: "POST" })
         .then((response) => {
           const data = response.data;
-          sessionStorage.setItem("token", data?.token);
+          localStorage.setItem("token", data?.token);
           toastifyInfo(`Welcome back ${data.name}!`);
           setLgLoading(false);
           setRgLoading(false);
@@ -127,7 +127,7 @@ function Register() {
       .then((response) => {
         const data = response.data;
 
-        sessionStorage.setItem("token", data.token);
+        localStorage.setItem("token", data.token);
         toastifyInfo(`Welcome ${data.name}!`);
         setLgLoading(false);
         dispatch(loadUser(data));
@@ -141,12 +141,13 @@ function Register() {
   const handleSubmitRegister = (e) => {
     e.preventDefault();
     setRgLoading(true);
+
     axios
       .post("/user/register", userRegister)
       .then((response) => {
         const data = response.data;
         setRgLoading(false);
-        sessionStorage.setItem("token", data.token);
+        localStorage.setItem("token", data.token);
         toastifyInfo(`Welcome ${data.name}!`);
         dispatch(loadUser(data));
       })
