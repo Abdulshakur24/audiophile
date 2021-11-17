@@ -13,7 +13,9 @@
     align-items: flex-start;
 
     p {
-      color: $white;
+      &.status {
+        color: $white;
+      }
       padding: 0.25rem;
       margin: 0.5rem 0;
       border-radius: 4px;

@@ -49,8 +49,8 @@ function History({ id, date, status }) {
         <h5>Date: {moment.unix(date).format("MMM Do LT")} </h5>
       </div>
       <div className="history-header">
-        <p>Payment Transaction</p>
-        <p className={`${status === "succeeded"}`}>{status}</p>
+        <p>Payment Status</p>
+        <p className={`status ${status === "succeeded"}`}>{status}</p>
       </div>
       <div className="history-carts">
         {orderHistory.map(
