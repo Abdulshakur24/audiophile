@@ -27,7 +27,8 @@ function Histories() {
       };
       axios
         // https://audiophile-e-commerce.herokuapp.com
-        .get("http://localhost:5010/history/all", {
+        // http://localhost:5010/history/all
+        .get("https://audiophile-e-commerce.herokuapp.com", {
           method: "GET",
           cancelToken: source.token,
         })
