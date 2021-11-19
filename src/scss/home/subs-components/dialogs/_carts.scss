@@ -90,6 +90,7 @@
         background-color: $brown;
         color: white;
         cursor: pointer;
+        transition: all 200ms ease-in-out;
 
         &:hover {
           background: $lightsalmon;

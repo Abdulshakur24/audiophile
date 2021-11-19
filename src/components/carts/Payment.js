@@ -39,7 +39,6 @@ function Payment({ classes, theme }) {
 
   const handleChange = (event) => {
     setComplete(event.complete);
-    console.log(event);
     event.error && toastifyError(event.error.message);
   };
 

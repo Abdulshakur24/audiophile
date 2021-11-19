@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import History from "./History";
 import Header from "../products/Headphones/sub-components/Header";
 import Footer from "../home/sub-components/Footer";
 import Carts from "../home/dialogs/Carts";
+import Menu from "../home/dialogs/Menu";
+import { ReactComponent as TruckDelivery } from "../../assets/truckDelivery.svg";
+import { ReactComponent as DeliveryLogo } from "../../assets/deliveryLogo.svg";
+import Button from "@mui/material/Button";
 import axios from "axios";
 
 function Histories() {
   const userState = useSelector((state) => state.user.user);
   const [orderHistory, SetorderHistory] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     const cancelToken = axios.CancelToken;
@@ -21,7 +26,8 @@ function Histories() {
         Authorization: `Bearer ${token}`,
       };
       axios
-        .get("https://audiophile-e-commerce.herokuapp.com/history/all", {
+        // https://audiophile-e-commerce.herokuapp.com
+        .get("http://localhost:5010/history/all", {
           method: "GET",
           cancelToken: source.token,
         })
@@ -38,19 +44,39 @@ function Histories() {
   return (
     <div className="histories">
       <Header />
+      <Menu />
       <Carts />
-
       <div className="histories-container">
         <div className="histories-contents">
           <h1>Order History</h1>
-          {orderHistory.map(({ stripe_id, date_purchase, status }, index) => (
-            <History
-              key={index}
-              id={stripe_id}
-              date={date_purchase}
-              status={status}
-            />
-          ))}
+          {orderHistory.length ? (
+            orderHistory.map(({ stripe_id, date_purchase, status }, index) => (
+              <History
+                key={index}
+                id={stripe_id}
+                date={date_purchase}
+                status={status}
+              />
+            ))
+          ) : (
+            <div className="no-record">
+              <div className="container">
+                <h1>You have no order in progress!</h1>
+                <h3>All your orders will be saved here for you.</h3>
+                <div className="logo">
+                  <TruckDelivery />
+                  <DeliveryLogo />
+                </div>
+                <Button
+                  onClick={() =>
+                    setTimeout(() => history.push("categories/headphones"), 300)
+                  }
+                >
+                  Click here to start buying products
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <Footer />

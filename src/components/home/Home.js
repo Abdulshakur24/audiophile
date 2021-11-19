@@ -10,18 +10,19 @@ import Description from "./sub-components/Description";
 //import dialogs
 import Menu from "./dialogs/Menu";
 import Carts from "./dialogs/Carts";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function Home() {
   const user = useSelector((state) => state.user.user);
-
+  const history = useHistory();
   return (
     <div className="home">
       <Header />
       <Menu />
       <Carts />
       <Banner />
+      <p onClick={() => history.push("/history")}>Go to history</p>
       <Products />
       <Galleries />
       <Description />
