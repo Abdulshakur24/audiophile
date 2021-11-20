@@ -1,31 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import moment from "moment";
-import axios from "../../axios";
 
-function History({ id, date, status }) {
+function History({ id, date, status, products }) {
   const isModalOpen = useSelector((state) => state.dialogs.isCheckoutModalOpen);
+
   useEffect(() => {
     isModalOpen ? disableBodyScroll(document) : enableBodyScroll(document);
   }, [isModalOpen]);
-  const [orderHistory, SetorderHistory] = useState([]);
-
-  useEffect(() => {
-    if (id) {
-      const getHistoryCarts = () => {
-        axios
-          .get(`/history/by-id/${id}`, { method: "GET" })
-          .then((response) => {
-            SetorderHistory(response.data);
-          });
-      };
-      getHistoryCarts();
-    }
-  }, [id]);
 
   const getTotal = () =>
-    orderHistory
+    products
       .map(
         ({ product_price, product_quantity }) =>
           product_price * product_quantity
@@ -34,7 +20,7 @@ function History({ id, date, status }) {
 
   const getVatFromTotal = () =>
     Math.round(
-      orderHistory
+      products
         .map(
           ({ product_price, product_quantity }) =>
             product_price * product_quantity
@@ -53,7 +39,7 @@ function History({ id, date, status }) {
         <p className={`status ${status === "succeeded"}`}>{status}</p>
       </div>
       <div className="history-carts">
-        {orderHistory.map(
+        {products.map(
           (
             { product_name, product_price, product_image, product_quantity },
             id

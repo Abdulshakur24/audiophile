@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { openOrCloseCart } from "../../../app-redux/features/Dialogs";
 import Cart from "./Cart";
@@ -6,6 +6,10 @@ import { emptyTheCart } from "../../../app-redux/features/Carts";
 import { useHistory } from "react-router";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import useReactSimpleMatchMedia from "react-simple-matchmedia";
+import HistoryIcon from "@mui/icons-material/History";
+import ClearAllIcon from "@mui/icons-material/ClearAll";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import { logout } from "../../../app-redux/features/User";
 
 function Carts() {
   const isCartOpen = useSelector((state) => state.dialogs.isCartOpen);
@@ -30,6 +34,13 @@ function Carts() {
     isCartOpen ? disableBodyScroll(document) : enableBodyScroll(document);
   else enableBodyScroll(document);
 
+  const handleHistory = () => {
+    history.push("/history");
+    dispatch(openOrCloseCart(false));
+  };
+
+  const [confirm, setConfirm] = useState(false);
+
   return (
     <>
       <div
@@ -43,7 +54,20 @@ function Carts() {
         <div className="container" onClick={(event) => event.stopPropagation()}>
           <header>
             <h4>CART ({cartsArr.length})</h4>
-            <button onClick={() => dispatch(emptyTheCart())}>Remove all</button>
+            <div className="carts-icons">
+              <HistoryIcon onClick={() => handleHistory()} />
+
+              <ClearAllIcon onClick={() => dispatch(emptyTheCart())} />
+              {!confirm ? (
+                <ExitToAppIcon onClick={() => setConfirm(true)} />
+              ) : (
+                <div>
+                  <p>Confirm logout?</p>
+                  <button onClick={() => dispatch(logout())}>YES</button>
+                  <button onClick={() => setConfirm(false)}>NO</button>
+                </div>
+              )}
+            </div>
           </header>
 
           <div className="carts">

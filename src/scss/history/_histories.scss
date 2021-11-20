@@ -12,8 +12,9 @@
       width: 100%;
       max-width: 1220px;
       overflow-y: auto;
-
       border-radius: 4px;
+
+      @import "./history_preloader";
     }
 
     .no-record {

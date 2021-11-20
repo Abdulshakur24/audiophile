@@ -1,0 +1,94 @@
+.loader {
+  margin: 2rem;
+  background: $white;
+  padding: 1rem;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  .MuiSkeleton-root {
+    background: #c9c9c9;
+  }
+
+  .loader-header {
+    display: flex;
+    flex-direction: column;
+    @include breakpoint-up(medium) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .left {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+
+      .id {
+        height: 44px;
+        width: 224px;
+      }
+      .date {
+        height: 18px;
+        width: 140px;
+      }
+    }
+    .right {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      @include breakpoint-up(medium) {
+        align-items: flex-end;
+      }
+      .payment {
+        width: 130px;
+        height: 30px;
+      }
+
+      .status {
+        width: 92px;
+        height: 30px;
+      }
+    }
+  }
+  .loader-body {
+    .loader-cart {
+      margin: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+
+      .flex-left {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .loader-image {
+          width: 64px;
+          height: 64px;
+        }
+
+        .loader-info {
+          margin-left: 1rem;
+
+          .loader-name {
+            width: 79px;
+            height: 22px;
+          }
+
+          .loader-price {
+            width: 54px;
+            height: 22px;
+          }
+        }
+      }
+
+      .flex-right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .loader-quantity {
+          height: 22px;
+          width: 16px;
+        }
+      }
+    }
+  }
+}
