@@ -15,8 +15,7 @@ function Modal() {
 
   const goBackHome = () => {
     dispatch(openOrCloseCheckoutModal(false));
-
-    history.push("/");
+    history.push("/history");
   };
 
   const getTotal = () =>
@@ -68,7 +67,7 @@ function Modal() {
             </div>
           </div>
 
-          <button onClick={goBackHome}>BACK TO HOME</button>
+          <button onClick={goBackHome}>SEE YOUR ORDERS</button>
         </div>
       </div>
     </>

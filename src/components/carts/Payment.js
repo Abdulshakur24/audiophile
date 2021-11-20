@@ -114,7 +114,7 @@ function Payment({ classes, theme }) {
                 date: paymentIntent.created,
                 status: paymentIntent.status,
               })
-              .then((responseStepTwo) => {
+              .then(() => {
                 axios
                   .post("/payments/step-three", {
                     stripeId: paymentIntent.id,
@@ -125,10 +125,6 @@ function Payment({ classes, theme }) {
                     toastifySucces("Thank you for shopping with us!");
                     openModal();
                     toastifyInfo();
-                    setTimeout(() => {
-                      closeModal();
-                      history.push("/history");
-                    }, 10000);
                   });
               })
               .catch((error) => {

@@ -58,13 +58,14 @@ function Carts() {
               <HistoryIcon onClick={() => handleHistory()} />
 
               <ClearAllIcon onClick={() => dispatch(emptyTheCart())} />
-              {!confirm ? (
-                <ExitToAppIcon onClick={() => setConfirm(true)} />
-              ) : (
-                <div>
+              <ExitToAppIcon onClick={() => setConfirm(!confirm)} />
+              {confirm && (
+                <div className="cart-confirm">
                   <p>Confirm logout?</p>
-                  <button onClick={() => dispatch(logout())}>YES</button>
-                  <button onClick={() => setConfirm(false)}>NO</button>
+                  <div className="buttons">
+                    <button onClick={() => setConfirm(false)}>NO</button>
+                    <button onClick={() => dispatch(logout())}>YES</button>
+                  </div>
                 </div>
               )}
             </div>
