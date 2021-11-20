@@ -7,7 +7,6 @@ import TextField from "@material-ui/core/TextField";
 import { ThemeProvider } from "@material-ui/styles";
 import { LoadingButton } from "@mui/lab";
 import { toast } from "react-toastify";
-import { useHistory } from "react-router-dom";
 
 function Payment({ classes, theme }) {
   const [processing, setProcessing] = useState(false);
@@ -17,7 +16,6 @@ function Payment({ classes, theme }) {
   const elements = useElements();
   const cartsArr = useSelector((state) => state.carts.carts);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const getTotalPriceFromCarts = () =>
     cartsArr
@@ -46,7 +44,6 @@ function Payment({ classes, theme }) {
     dispatch(openOrCloseCheckoutModal(true));
     window.scrollTo(0, 0);
   };
-  const closeModal = () => dispatch(openOrCloseCheckoutModal(false));
 
   const { name, email, phone, address, zipCode, city, country } = users;
   const handleChangeField = (name) => (e) => {
