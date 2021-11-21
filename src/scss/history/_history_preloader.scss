@@ -90,5 +90,61 @@
         }
       }
     }
+
+    .loader-details {
+      padding: 0.5rem;
+      .loader-total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .loader-total-a {
+          width: 50px;
+          height: 21px;
+        }
+        .loader-total-b {
+          width: 20px;
+          height: 20px;
+        }
+      }
+      .loader-shipping {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .loader-shipping-a {
+          width: 73px;
+          height: 21px;
+        }
+        .loader-shipping-b {
+          width: 30px;
+          height: 21px;
+        }
+      }
+      .loader-vat {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .loader-vat-a {
+          width: 123px;
+          height: 21px;
+        }
+        .loader-vat-b {
+          width: 21px;
+          height: 21px;
+        }
+      }
+      .loader-total-paid {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .loader-total-paid-a {
+          width: 87px;
+          height: 21px;
+        }
+        .loader-total-paid-b {
+          width: 33px;
+          height: 21px;
+        }
+      }
+    }
   }
 }

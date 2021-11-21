@@ -51,6 +51,24 @@ function HistoryPreloader() {
             <Skeleton className="loader-quantity" />
           </div>
         </div>
+        <div className="loader-details">
+          <div className="loader-total">
+            <Skeleton className="loader-total-a" />
+            <Skeleton className="loader-total-b" />
+          </div>
+          <div className="loader-shipping">
+            <Skeleton className="loader-shipping-a" />
+            <Skeleton className="loader-shipping-b" />
+          </div>
+          <div className="loader-vat">
+            <Skeleton className="loader-vat-a" />
+            <Skeleton className="loader-vat-b" />
+          </div>
+          <div className="loader-total-paid">
+            <Skeleton className="loader-total-paid-a" />
+            <Skeleton className="loader-total-paid-b" />
+          </div>
+        </div>
       </div>
     </div>
   );
