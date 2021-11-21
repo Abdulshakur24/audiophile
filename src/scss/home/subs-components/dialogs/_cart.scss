@@ -5,6 +5,7 @@
   grid-template: 1fr / minmax(auto, 64px) minmax(auto, 111px) minmax(auto, 96px);
   justify-content: center;
   gap: 1rem;
+  z-index: 16;
 
   .left {
     img {
