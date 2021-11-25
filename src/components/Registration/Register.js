@@ -13,6 +13,8 @@ import { loadUser } from "../../app-redux/features/User";
 import { LoadingButton } from "@mui/lab";
 import { Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
+import GoogleIcon from "@mui/icons-material/Google";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -58,7 +60,7 @@ function Register() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token") || Cookies.get("token");
     axios.defaults.headers.common = {
       ...axios.defaults.headers.common,
       Authorization: `Bearer ${token}`,
@@ -73,7 +75,7 @@ function Register() {
         .then((response) => {
           const data = response.data;
           localStorage.setItem("token", data?.token);
-          toastifyInfo(`Welcome back ${data.name}!`);
+          toastifyInfo(`Welcome ${data.name}!`);
           setLgLoading(false);
           setRgLoading(false);
           dispatch(loadUser(data));
@@ -201,7 +203,12 @@ function Register() {
                   Don't have an account?{" "}
                   <em onClick={() => setState(false)}>Register here</em>
                 </p>
-
+                <h2>OR</h2>
+                <a href="https://audiophile-e-commerce.herokuapp.com/auth/google">
+                  <LoadingButton loading={lg_loading}>
+                    <GoogleIcon className="googleIcon" /> CONTINUE WITH GOOGLE
+                  </LoadingButton>
+                </a>
                 <LoadingButton
                   type="submit"
                   loading={lg_loading}
@@ -253,6 +260,12 @@ function Register() {
                   Already have an account?
                   <em onClick={() => setState(true)}> Login here</em>
                 </p>
+                <h2>OR</h2>
+                <a href="https://audiophile-e-commerce.herokuapp.com/auth/google">
+                  <LoadingButton loading={rg_loading}>
+                    <GoogleIcon className="googleIcon" /> CONTINUE WITH GOOGLE
+                  </LoadingButton>
+                </a>
 
                 <LoadingButton
                   loading={rg_loading}

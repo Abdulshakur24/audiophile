@@ -56,6 +56,20 @@
           }
         }
 
+        h2 {
+          margin: 0.5rem 0;
+          text-align: center;
+        }
+
+        a {
+          display: flex;
+          align-items: space-around;
+          text-decoration: unset;
+          .googleIcon {
+            margin: 0.5rem;
+          }
+        }
+
         .checkbox {
           margin: 1rem 0;
           display: flex;
@@ -73,7 +87,9 @@
           width: 100%;
           height: 48px;
           transition: all 300ms ease-in-out;
-          margin-top: 1.5rem;
+          &:not(:first-child) {
+            margin-top: 1.5rem;
+          }
 
           .MuiLoadingButton-loadingIndicator {
             justify-content: center;
