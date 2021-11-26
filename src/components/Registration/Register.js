@@ -60,7 +60,8 @@ function Register() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem("token") || Cookies.get("token");
+    const token = localStorage.getItem("token") || Cookies.get("A_JWT");
+    console.log(token);
     axios.defaults.headers.common = {
       ...axios.defaults.headers.common,
       Authorization: `Bearer ${token}`,
@@ -159,6 +160,10 @@ function Register() {
       });
   };
 
+  const navigate = () =>
+    (window.location.href =
+      "https://audiophile-e-commerce.herokuapp.com/auth/google");
+
   return (
     <div className="register">
       <header>
@@ -204,11 +209,11 @@ function Register() {
                   <em onClick={() => setState(false)}>Register here</em>
                 </p>
                 <h2>OR</h2>
-                <a href="https://audiophile-e-commerce.herokuapp.com/auth/google">
-                  <LoadingButton loading={lg_loading}>
-                    <GoogleIcon className="googleIcon" /> CONTINUE WITH GOOGLE
-                  </LoadingButton>
-                </a>
+
+                <LoadingButton loading={lg_loading} onClick={navigate}>
+                  <GoogleIcon className="googleIcon" /> CONTINUE WITH GOOGLE
+                </LoadingButton>
+
                 <LoadingButton
                   type="submit"
                   loading={lg_loading}
@@ -261,11 +266,10 @@ function Register() {
                   <em onClick={() => setState(true)}> Login here</em>
                 </p>
                 <h2>OR</h2>
-                <a href="https://audiophile-e-commerce.herokuapp.com/auth/google">
-                  <LoadingButton loading={rg_loading}>
-                    <GoogleIcon className="googleIcon" /> CONTINUE WITH GOOGLE
-                  </LoadingButton>
-                </a>
+
+                <LoadingButton loading={rg_loading} onClick={navigate}>
+                  <GoogleIcon className="googleIcon" /> CONTINUE WITH GOOGLE
+                </LoadingButton>
 
                 <LoadingButton
                   loading={rg_loading}

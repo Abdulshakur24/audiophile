@@ -12,7 +12,7 @@ export const userSlice = createSlice({
     },
     logout: (state) => {
       localStorage.clear();
-      Cookies.remove("token");
+      Cookies.remove("A_JWT");
       state.user = null;
     },
   },
