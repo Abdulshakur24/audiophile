@@ -13,7 +13,6 @@ import { loadUser } from "../../app-redux/features/User";
 import { LoadingButton } from "@mui/lab";
 import { Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
-import Cookies from "js-cookie";
 import GoogleIcon from "@mui/icons-material/Google";
 
 const useStyles = makeStyles((theme) =>
@@ -60,7 +59,7 @@ function Register() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem("token") || Cookies.get("A_JWT");
+    const token = localStorage.getItem("token");
     axios.defaults.headers.common = {
       ...axios.defaults.headers.common,
       Authorization: `Bearer ${token}`,
@@ -75,7 +74,7 @@ function Register() {
         .then((response) => {
           const data = response.data;
           localStorage.setItem("token", data?.token);
-          toastifyInfo(`Welcome ${data.name}!`);
+          toastifyInfo(`Welcome back ${data.name}!`);
           setLgLoading(false);
           setRgLoading(false);
           dispatch(loadUser(data));
@@ -87,6 +86,27 @@ function Register() {
         });
     }
     return;
+  }, [dispatch]);
+
+  useEffect(() => {
+    setLgLoading(true);
+    setRgLoading(true);
+
+    axios
+      .get("/auth/credentials")
+      .then((response) => {
+        const data = response.data;
+        localStorage.setItem("token", data?.token);
+        toastifyInfo(`Welcome back ${data.name}!`);
+        setLgLoading(false);
+        setRgLoading(false);
+        dispatch(loadUser(data));
+      })
+      .catch((error) => {
+        setLgLoading(false);
+        setRgLoading(false);
+        toastifyError(error.response?.data);
+      });
   }, [dispatch]);
 
   const toastifyError = (error) => {
