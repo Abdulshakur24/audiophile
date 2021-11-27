@@ -61,7 +61,6 @@ function Register() {
 
   useEffect(() => {
     const token = localStorage.getItem("token") || Cookies.get("A_JWT");
-    console.log(token);
     axios.defaults.headers.common = {
       ...axios.defaults.headers.common,
       Authorization: `Bearer ${token}`,

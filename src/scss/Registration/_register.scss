@@ -61,8 +61,11 @@
           text-align: center;
         }
 
-        .googleIcon {
-          margin: 0.5rem;
+        .MuiLoadingButton-root {
+          border: 1px solid $gray;
+          .googleIcon {
+            margin: 0.5rem;
+          }
         }
 
         .checkbox {
