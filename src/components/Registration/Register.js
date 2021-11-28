@@ -59,7 +59,7 @@ function Register() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     axios.defaults.headers.common = {
       ...axios.defaults.headers.common,
       Authorization: `Bearer ${token}`,
@@ -73,7 +73,7 @@ function Register() {
         .post("/token", { token }, { method: "POST" })
         .then((response) => {
           const data = response.data;
-          localStorage.setItem("token", data?.token);
+          sessionStorage.setItem("token", data?.token);
           toastifyInfo(`Welcome back ${data.name}!`);
           setLgLoading(false);
           setRgLoading(false);
@@ -96,7 +96,7 @@ function Register() {
       .get("/auth/credentials")
       .then((response) => {
         const data = response.data;
-        localStorage.setItem("token", data?.token);
+        sessionStorage.setItem("token", data?.token);
         toastifyInfo(`Welcome ${data.name}!`);
         setLgLoading(false);
         setRgLoading(false);
@@ -149,7 +149,7 @@ function Register() {
       .then((response) => {
         const data = response.data;
 
-        localStorage.setItem("token", data.token);
+        sessionStorage.setItem("token", data.token);
         toastifyInfo(`Welcome ${data.name}!`);
         setLgLoading(false);
         dispatch(loadUser(data));
@@ -169,7 +169,7 @@ function Register() {
       .then((response) => {
         const data = response.data;
         setRgLoading(false);
-        localStorage.setItem("token", data.token);
+        sessionStorage.setItem("token", data.token);
         toastifyInfo(`Welcome ${data.name}!`);
         dispatch(loadUser(data));
       })
@@ -180,8 +180,7 @@ function Register() {
   };
 
   const navigate = () =>
-    (window.location.href =
-      "https://audiophile-e-commerce.herokuapp.com/auth/google");
+    (window.location.href = "http://localhost:5010/auth/google");
 
   return (
     <div className="register">

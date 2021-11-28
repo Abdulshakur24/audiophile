@@ -4,7 +4,7 @@ import axios from "axios";
 // "https://audiophile-e-commerce.herokuapp.com"
 
 const instance = axios.create({
-  baseURL: "https://audiophile-e-commerce.herokuapp.com",
+  baseURL: "http://localhost:5010",
   withCredentials: true,
 });
 

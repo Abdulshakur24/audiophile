@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import Cookies from "js-cookie";
 
 export const userSlice = createSlice({
   name: "user",
@@ -11,8 +10,7 @@ export const userSlice = createSlice({
       state.user = action.payload;
     },
     logout: (state) => {
-      localStorage.clear();
-      Cookies.remove("A_JWT");
+      sessionStorage.clear();
       state.user = null;
     },
   },

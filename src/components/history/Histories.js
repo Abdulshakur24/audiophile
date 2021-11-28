@@ -22,7 +22,7 @@ function Histories() {
     const cancelToken = axios.CancelToken;
     const source = cancelToken.source();
     const fetchOrderHistory = () => {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       axios.defaults.headers.common = {
         ...axios.defaults.headers.common,
         Authorization: `Bearer ${token}`,
