@@ -180,7 +180,8 @@ function Register() {
   };
 
   const navigate = () =>
-    (window.location.href = "http://localhost:5010/auth/google");
+    (window.location.href =
+      "https://audiophile-e-commerce.herokuapp.com/auth/google");
 
   return (
     <div className="register">
