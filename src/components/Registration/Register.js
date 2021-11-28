@@ -97,7 +97,7 @@ function Register() {
       .then((response) => {
         const data = response.data;
         localStorage.setItem("token", data?.token);
-        toastifyInfo(`Welcome back ${data.name}!`);
+        toastifyInfo(`Welcome ${data.name}!`);
         setLgLoading(false);
         setRgLoading(false);
         dispatch(loadUser(data));
@@ -105,7 +105,7 @@ function Register() {
       .catch((error) => {
         setLgLoading(false);
         setRgLoading(false);
-        toastifyError(error.response?.data);
+        error.response?.data && toastifyError(error.response?.data);
       });
   }, [dispatch]);
 
