@@ -227,11 +227,6 @@ function Register() {
                   Don't have an account?{" "}
                   <em onClick={() => setState(false)}>Register here</em>
                 </p>
-                <h2>OR</h2>
-
-                <LoadingButton loading={lg_loading} onClick={navigate}>
-                  <GoogleIcon className="googleIcon" /> CONTINUE WITH GOOGLE
-                </LoadingButton>
 
                 <LoadingButton
                   type="submit"
@@ -239,6 +234,12 @@ function Register() {
                   variant="outlined"
                 >
                   Login
+                </LoadingButton>
+
+                <h2>OR</h2>
+
+                <LoadingButton loading={lg_loading} onClick={navigate}>
+                  <GoogleIcon className="googleIcon" /> CONTINUE WITH GOOGLE
                 </LoadingButton>
               </form>
             ) : (
@@ -284,11 +285,6 @@ function Register() {
                   Already have an account?
                   <em onClick={() => setState(true)}> Login here</em>
                 </p>
-                <h2>OR</h2>
-
-                <LoadingButton loading={rg_loading} onClick={navigate}>
-                  <GoogleIcon className="googleIcon" /> CONTINUE WITH GOOGLE
-                </LoadingButton>
 
                 <LoadingButton
                   loading={rg_loading}
@@ -296,6 +292,12 @@ function Register() {
                   type="submit"
                 >
                   Register
+                </LoadingButton>
+
+                <h2>OR</h2>
+
+                <LoadingButton loading={rg_loading} onClick={navigate}>
+                  <GoogleIcon className="googleIcon" /> CONTINUE WITH GOOGLE
                 </LoadingButton>
               </form>
             )}
