@@ -30,7 +30,7 @@ function Histories() {
       axios
         // https://audiophile-e-commerce.herokuapp.com
         // http://localhost:5010
-        .get("http://localhost:5010/history/all", {
+        .get("https://audiophile-e-commerce.herokuapp.com/history/all", {
           method: "GET",
           cancelToken: source.token,
         })
