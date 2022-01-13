@@ -22,18 +22,22 @@ function Histories() {
     const cancelToken = axios.CancelToken;
     const source = cancelToken.source();
     const fetchOrderHistory = () => {
+      const isProduction = process.env.NODE_ENV === "production";
       const token = sessionStorage.getItem("token");
       axios.defaults.headers.common = {
         ...axios.defaults.headers.common,
         Authorization: `Bearer ${token}`,
       };
       axios
-        // https://audiophile-e-commerce.herokuapp.com
-        // http://localhost:5010
-        .get("https://audiophile-e-commerce.herokuapp.com/history/all", {
-          method: "GET",
-          cancelToken: source.token,
-        })
+        .get(
+          isProduction
+            ? "https://audiophile-e-commerce.herokuapp.com/history/all"
+            : "http://localhost:5010/history/all",
+          {
+            method: "GET",
+            cancelToken: source.token,
+          }
+        )
         .then((response) => {
           SetorderHistory(response.data);
           setIsLoading(false);

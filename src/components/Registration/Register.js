@@ -56,6 +56,8 @@ function Register() {
   const [lg_loading, setLgLoading] = useState(false);
   const [rg_loading, setRgLoading] = useState(false);
 
+  const isProduction = process.env.NODE_ENV === "production";
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -180,8 +182,9 @@ function Register() {
   };
 
   const navigate = () =>
-    (window.location.href =
-      "https://audiophile-e-commerce.herokuapp.com/auth/google");
+    (window.location.href = isProduction
+      ? "https://audiophile-e-commerce.herokuapp.com/auth/google"
+      : "http://localhost:5010/auth/google");
 
   return (
     <div className="register">

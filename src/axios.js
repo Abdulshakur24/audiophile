@@ -1,10 +1,10 @@
 import axios from "axios";
 
-// "http://localhost:5010"
-// "https://audiophile-e-commerce.herokuapp.com"
-
 const instance = axios.create({
-  baseURL: "https://audiophile-e-commerce.herokuapp.com/",
+  baseURL:
+    process.env.NODE_ENV === "production"
+      ? "https://audiophile-e-commerce.herokuapp.com/"
+      : "http://localhost:5010",
   withCredentials: true,
 });
 

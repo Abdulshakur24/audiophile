@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { openOrCloseCart } from "../../../app-redux/features/Dialogs";
 import Cart from "./Cart";
-import { emptyTheCart } from "../../../app-redux/features/Carts";
+import {
+  loadCartsFromSessionStorage,
+  emptyTheCart,
+} from "../../../app-redux/features/Carts";
 import { useHistory } from "react-router";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import useReactSimpleMatchMedia from "react-simple-matchmedia";
@@ -17,6 +20,15 @@ function Carts() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  useEffect(() => {
+    const cartsFromSessionStorage = sessionStorage.getItem("carts");
+
+    if (cartsFromSessionStorage) {
+      const parsed = JSON.parse(cartsFromSessionStorage);
+      dispatch(loadCartsFromSessionStorage(parsed));
+    }
+  }, [dispatch]);
+
   const getTotal = () => {
     const priceArr = cartsArr.map(({ price, quantity }) => price * quantity);
     return priceArr.reduce((a, b) => a + b, 0);
@@ -28,7 +40,6 @@ function Carts() {
   };
 
   const queryMedia = useReactSimpleMatchMedia;
-  // const queryMedia = (media) => matched(media);
 
   if (queryMedia("(max-width: 40em)"))
     isCartOpen ? disableBodyScroll(document) : enableBodyScroll(document);
@@ -56,7 +67,6 @@ function Carts() {
             <h4>CART ({cartsArr.length})</h4>
             <div className="carts-icons">
               <HistoryIcon onClick={() => handleHistory()} />
-
               <ClearAllIcon onClick={() => dispatch(emptyTheCart())} />
               <ExitToAppIcon onClick={() => setConfirm(!confirm)} />
               {confirm && (
