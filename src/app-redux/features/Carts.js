@@ -31,7 +31,7 @@ export const cartSlice = createSlice({
     },
     emptyTheCart: (state) => {
       state.carts.length = 0;
-      setSessionStorage(state.carts);
+      sessionStorage.removeItem("carts");
     },
   },
 });
