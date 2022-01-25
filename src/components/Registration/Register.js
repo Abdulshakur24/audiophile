@@ -152,21 +152,42 @@ function Register() {
 
   useEffect(() => {
     const loginAsGuest = () => {
-      setUserLogin({ lg_email: "guest@gmail.com", lg_password: "guest1234" });
-      handleSubmitLogin();
-    };
+      const login = () => {
+        setUserLogin({
+          lg_email: "guest@gmail.com",
+          lg_password: "guest1234",
+        });
+        const handleSubmitGuest = () => {
+          setLgLoading(true);
+          axios
+            .post("/user/login", {
+              lg_email: "guest@gmail.com",
+              lg_password: "guest1234",
+            })
+            .then((response) => {
+              const data = response.data;
+              sessionStorage.setItem("token", data.token);
+              toastifyInfo(`Welcome ${data.name}!`);
+              setLgLoading(false);
+              dispatch(loadUser(data));
+            })
+            .catch((error) => {
+              setLgLoading(false);
+              toastifyError(error.response?.data);
+            });
+        };
+        handleSubmitGuest();
+      };
 
-    setTimeout(
-      () =>
-        toastifyInfo(
-          "Feeling lazy to sign up? Click here to sign in as a Guest",
-          loginAsGuest,
-          5000,
-          "top-right"
-        ),
-      3000
-    );
-  }, []);
+      toastifyInfo(
+        "Feeling lazy to sign up? Click here to sign in as a Guest",
+        login,
+        5000,
+        "top-right"
+      );
+    };
+    setTimeout(() => loginAsGuest(), 3000);
+  }, [dispatch]);
 
   const handleLogin = (name) => (e) => {
     setUserLogin({ ...userLogin, [name]: e.target.value });
