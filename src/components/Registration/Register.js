@@ -36,6 +36,8 @@ const theme = createMuiTheme({
   },
 });
 
+const controller = new AbortController();
+
 function Register() {
   const classes = useStyles();
   const [userLogin, setUserLogin] = useState({
@@ -72,7 +74,11 @@ function Register() {
       setRgLoading(true);
 
       axios
-        .post("/token", { token }, { method: "POST" })
+        .post(
+          "/token",
+          { token },
+          { method: "POST", signal: controller.signal }
+        )
         .then((response) => {
           const data = response.data;
           sessionStorage.setItem("token", data?.token);
@@ -87,7 +93,9 @@ function Register() {
           toastifyError(error.response?.data);
         });
     }
-    return;
+    return () => {
+      controller.abort();
+    };
   }, [dispatch]);
 
   useEffect(() => {
@@ -95,7 +103,7 @@ function Register() {
     setRgLoading(true);
 
     axios
-      .get("/auth/credentials")
+      .get("/auth/credentials", { signal: controller.signal })
       .then((response) => {
         const data = response.data;
         sessionStorage.setItem("token", data?.token);
@@ -109,6 +117,10 @@ function Register() {
         setRgLoading(false);
         error.response?.data && toastifyError(error.response?.data);
       });
+
+    return () => {
+      controller.abort();
+    };
   }, [dispatch]);
 
   const toastifyError = (error) => {
@@ -116,22 +128,45 @@ function Register() {
       position: "top-center",
       autoClose: 4500,
       hideProgressBar: false,
-
       closeOnClick: false,
       pauseOnHover: false,
       closeButton: true,
     });
   };
 
-  const toastifyInfo = (info) => {
+  const toastifyInfo = (
+    info,
+    func = () => {},
+    autoClose = 3000,
+    position = "top-center"
+  ) => {
     toast.info(info, {
-      position: "top-center",
-      autoClose: 3000,
+      position: position,
+      autoClose: autoClose,
       hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      onClick: func,
     });
   };
+
+  useEffect(() => {
+    const loginAsGuest = () => {
+      setUserLogin({ lg_email: "guest@gmail.com", lg_password: "guest1234" });
+      handleSubmitLogin();
+    };
+
+    setTimeout(
+      () =>
+        toastifyInfo(
+          "Feeling lazy to sign up? Click here to sign in as a Guest",
+          loginAsGuest,
+          5000,
+          "top-right"
+        ),
+      3000
+    );
+  }, []);
 
   const handleLogin = (name) => (e) => {
     setUserLogin({ ...userLogin, [name]: e.target.value });
@@ -144,7 +179,7 @@ function Register() {
   const { rg_name, rg_email, rg_password } = userRegister;
 
   const handleSubmitLogin = (e) => {
-    e.preventDefault();
+    e?.preventDefault();
     setLgLoading(true);
     axios
       .post("/user/login", userLogin)
