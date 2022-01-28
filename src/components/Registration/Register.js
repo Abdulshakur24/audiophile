@@ -123,33 +123,6 @@ function Register() {
     };
   }, [dispatch]);
 
-  const toastifyError = (error) => {
-    toast.error(error, {
-      position: "top-center",
-      autoClose: 4500,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: false,
-      closeButton: true,
-    });
-  };
-
-  const toastifyInfo = (
-    info,
-    func = () => {},
-    autoClose = 3000,
-    position = "top-center"
-  ) => {
-    toast.info(info, {
-      position: position,
-      autoClose: autoClose,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      onClick: func,
-    });
-  };
-
   useEffect(() => {
     const loginAsGuest = () => {
       const login = () => {
@@ -189,6 +162,33 @@ function Register() {
     if (!(lg_loading && rg_loading)) setTimeout(() => loginAsGuest(), 3000);
   }, [dispatch]);
 
+  const toastifyError = (error) => {
+    toast.error(error, {
+      position: "top-center",
+      autoClose: 4500,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      closeButton: true,
+    });
+  };
+
+  const toastifyInfo = (
+    info,
+    func = () => {},
+    autoClose = 3000,
+    position = "top-center"
+  ) => {
+    toast.info(info, {
+      position: position,
+      autoClose: autoClose,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      onClick: func,
+    });
+  };
+
   const handleLogin = (name) => (e) => {
     setUserLogin({ ...userLogin, [name]: e.target.value });
   };
@@ -204,17 +204,15 @@ function Register() {
     setLgLoading(true);
     axios
       .post("/user/login", userLogin)
-      .then((response) => {
-        const data = response.data;
-
+      .then(({ data }) => {
         sessionStorage.setItem("token", data.token);
         toastifyInfo(`Welcome ${data.name}!`);
         setLgLoading(false);
         dispatch(loadUser(data));
       })
-      .catch((error) => {
+      .catch(({ response }) => {
         setLgLoading(false);
-        toastifyError(error.response?.data);
+        toastifyError(response?.data);
       });
   };
 
