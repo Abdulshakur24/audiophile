@@ -160,7 +160,7 @@ function Register() {
       );
     };
     if (!(lg_loading && rg_loading)) setTimeout(() => loginAsGuest(), 3000);
-  }, [dispatch]);
+  }, [dispatch, lg_loading, rg_loading]);
 
   const toastifyError = (error) => {
     toast.error(error, {
