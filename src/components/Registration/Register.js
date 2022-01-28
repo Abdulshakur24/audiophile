@@ -186,7 +186,7 @@ function Register() {
         "top-right"
       );
     };
-    setTimeout(() => loginAsGuest(), 3000);
+    if (!(lg_loading && rg_loading)) setTimeout(() => loginAsGuest(), 3000);
   }, [dispatch]);
 
   const handleLogin = (name) => (e) => {
