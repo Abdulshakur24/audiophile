@@ -160,7 +160,8 @@ function Register() {
       );
     };
 
-    if (lg_loading && rg_loading) return setTimeout(() => loginAsGuest(), 2000);
+    if (lg_loading && rg_loading && !Boolean(sessionStorage.getItem("token")))
+      return setTimeout(() => loginAsGuest(), 2000);
   }, [dispatch, lg_loading, rg_loading]);
 
   const toastifyError = (error) => {
