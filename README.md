@@ -4,4 +4,12 @@
 
 ## Welcome! 👋
 
-Feel Free to play around!
+## Tech and libraries used:
+
+- @material-ui/core and icons.
+- Redux
+- Stripe
+- Moment
+- SCSS
+
+--The End...
