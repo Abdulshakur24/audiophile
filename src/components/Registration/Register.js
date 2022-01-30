@@ -159,7 +159,8 @@ function Register() {
         "top-right"
       );
     };
-    if (!(lg_loading && rg_loading)) setTimeout(() => loginAsGuest(), 3000);
+
+    if (lg_loading && rg_loading) return setTimeout(() => loginAsGuest(), 2000);
   }, [dispatch, lg_loading, rg_loading]);
 
   const toastifyError = (error) => {
@@ -192,6 +193,7 @@ function Register() {
   const handleLogin = (name) => (e) => {
     setUserLogin({ ...userLogin, [name]: e.target.value });
   };
+
   const handleRegister = (name) => (e) => {
     setUserRegister({ ...userRegister, [name]: e.target.value });
   };
