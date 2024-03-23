@@ -7,8 +7,6 @@ function Details({ whichState, noOfGrids }) {
 
   const queryMedia = (media) => matched(media);
 
-  console.log(whichState)
-
   return (
     <div className={`details details_grids ${noOfGrids}`}>
       {whichState.map(

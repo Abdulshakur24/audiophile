@@ -4,34 +4,34 @@ export const categories = {
       id: 1,
       imagea:
         require("../../assets/category-headphones/mobile/image-xx99-mark-two.jpg")
-          .default,
+          ,
       imageM:
         require("../../assets/category-headphones/mobile/image-xx99-mark-two.jpg")
-          .default,
+          ,
       imageT:
         require("../../assets/category-headphones/tablet/image-xx99-mark-two.jpg")
-          .default,
+          ,
       imageD:
         require("../../assets/category-headphones/desktop/image-xx99-mark-two.jpg")
-          .default,
+          ,
       title: true,
       heading: "XX99 MARK II HEADPHONES",
       description:
         "The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.",
       path: "/products/headphones/xx99-mark-ii",
-      grid: "column",
+      grid: "columnsss",
     },
     {
       id: 2,
       imageM:
         require("../../assets/category-headphones/mobile/image-xx99-mark-one.jpg")
-          .default,
+          ,
       imageT:
         require("../../assets/category-headphones/tablet/image-xx99-mark-one.jpg")
-          .default,
+          ,
       imageD:
         require("../../assets/category-headphones/desktop/image-xx99-mark-one.jpg")
-          .default,
+          ,
       title: false,
       heading: "XX99 MARK I HEADPHONES",
       description:
@@ -42,11 +42,11 @@ export const categories = {
     {
       id: 3,
       imageM: require("../../assets/category-headphones/mobile/image-xx59.jpg")
-        .default,
+        ,
       imageT: require("../../assets/category-headphones/tablet/image-xx59.jpg")
-        .default,
+        ,
       imageD: require("../../assets/category-headphones/desktop/image-xx59.jpg")
-        .default,
+        ,
       title: false,
       heading: "XX59 HEADPHONES",
       description:
@@ -60,11 +60,11 @@ export const categories = {
     {
       id: 1,
       imageM: require("../../assets/category-speakers/mobile/image-zx9.jpg")
-        .default,
+        ,
       imageT: require("../../assets/category-speakers/tablet/image-zx9.jpg")
-        .default,
+        ,
       imageD: require("../../assets/category-speakers/desktop/image-zx9.jpg")
-        .default,
+        ,
       title: true,
       heading: "ZX9 SPEAKER",
       description:
@@ -75,11 +75,11 @@ export const categories = {
     {
       id: 2,
       imageM: require("../../assets/category-speakers/mobile/image-zx7.jpg")
-        .default,
+        ,
       imageT: require("../../assets/category-speakers/tablet/image-zx7.jpg")
-        .default,
+        ,
       imageD: require("../../assets/category-speakers/desktop/image-zx7.jpg")
-        .default,
+        ,
       title: false,
       heading: "ZX7 SPEAKER",
       description:
@@ -94,13 +94,13 @@ export const categories = {
       id: 1,
       imageM:
         require("../../assets/category-earphones/mobile/image-yx1-earphones.png")
-          .default,
+          ,
       imageT:
         require("../../assets/category-earphones/tablet/image-yx1-earphones-1.png")
-          .default,
+          ,
       imageD:
         require("../../assets/category-earphones/desktop/image-yx1-earphones.jpg")
-          .default,
+          ,
       title: true,
       heading: "YX1 WIRELESS EARPHONES",
       description:
@@ -111,4 +111,5 @@ export const categories = {
   ],
 };
 
-console.log(`categories: `, categories.headphones)
+console.log(`categories: `, require("../../assets/category-headphones/mobile/image-xx99-mark-two.jpg")
+)

@@ -5,13 +5,13 @@ export const products = {
         id: 1,
         imageM:
           require("../../assets/product-xx99-mark-one-headphones/mobile/image-product.jpg")
-            .default,
+            ,
         imageT:
           require("../../assets/product-xx99-mark-one-headphones/tablet/image-product.jpg")
-            .default,
+            ,
         imageD:
           require("../../assets/product-xx99-mark-one-headphones/desktop/image-product.jpg")
-            .default,
+            ,
         title: false,
         name: "XX99 MARK I HEADPHONES",
         description:
@@ -31,7 +31,7 @@ export const products = {
         carts: {
           id: 2,
           image: require("../../assets/cart/image-xx99-mark-one-headphones.jpg")
-            .default,
+            ,
           name: "XX99 MK I",
           price: 1750,
           quantity: 1,
@@ -41,37 +41,37 @@ export const products = {
             id: 1,
             imageM:
               require("../../assets/product-xx99-mark-one-headphones/mobile/image-gallery-1.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-xx99-mark-one-headphones/tablet/image-gallery-1.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-xx99-mark-one-headphones/desktop/image-gallery-1.jpg")
-                .default,
+                ,
           },
           {
             id: 2,
             imageM:
               require("../../assets/product-xx99-mark-one-headphones/mobile/image-gallery-2.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-xx99-mark-one-headphones/tablet/image-gallery-2.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-xx99-mark-one-headphones/desktop/image-gallery-2.jpg")
-                .default,
+                ,
           },
           {
             id: 3,
             imageM:
               require("../../assets/product-xx99-mark-one-headphones/mobile/image-gallery-3.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-xx99-mark-one-headphones/tablet/image-gallery-3.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-xx99-mark-one-headphones/desktop/image-gallery-3.jpg")
-                .default,
+                ,
           },
         ],
         suggestions: [
@@ -80,13 +80,13 @@ export const products = {
             name: "XX99 MARK II",
             imageM:
               require("../../assets/shared/mobile/image-xx99-mark-two-headphones.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/shared/tablet/image-xx99-mark-two-headphones.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/shared/desktop/image-xx99-mark-two-headphones.jpg")
-                .default,
+                ,
             path: "/products/headphones/xx99-mark-ii",
           },
           {
@@ -94,24 +94,24 @@ export const products = {
             name: "XX59",
             imageM:
               require("../../assets/shared/mobile/image-xx59-headphones.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/shared/tablet/image-xx59-headphones.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/shared/desktop/image-xx59-headphones.jpg")
-                .default,
+                ,
             path: "/products/headphones/xx59",
           },
           {
             id: 3,
             name: "ZX9 SPEAKER",
             imageM: require("../../assets/shared/mobile/image-zx9-speaker.jpg")
-              .default,
+              ,
             imageT: require("../../assets/shared/tablet/image-zx9-speaker.jpg")
-              .default,
+              ,
             imageD: require("../../assets/shared/desktop/image-zx9-speaker.jpg")
-              .default,
+              ,
             path: "/products/speakers/zx9",
           },
         ],
@@ -124,13 +124,13 @@ export const products = {
 
         imageM:
           require("../../assets/product-xx99-mark-two-headphones/mobile/image-product.jpg")
-            .default,
+            ,
         imageT:
           require("../../assets/product-xx99-mark-two-headphones/tablet/image-product.jpg")
-            .default,
+            ,
         imageD:
           require("../../assets/product-xx99-mark-two-headphones/desktop/image-product.jpg")
-            .default,
+            ,
         title: true,
         name: "XX99 MARK II HEADPHONES",
         description:
@@ -151,7 +151,7 @@ export const products = {
         carts: {
           id: 1,
           image: require("../../assets/cart/image-xx99-mark-two-headphones.jpg")
-            .default,
+            ,
           name: "XX99 MK II",
           price: 2999,
           quantity: 1,
@@ -161,37 +161,37 @@ export const products = {
             id: 1,
             imageM:
               require("../../assets/product-xx99-mark-two-headphones/mobile/image-gallery-1.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-xx99-mark-two-headphones/tablet/image-gallery-1.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-xx99-mark-two-headphones/desktop/image-gallery-1.jpg")
-                .default,
+                ,
           },
           {
             id: 2,
             imageM:
               require("../../assets/product-xx99-mark-two-headphones/mobile/image-gallery-2.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-xx99-mark-two-headphones/tablet/image-gallery-2.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-xx99-mark-two-headphones/desktop/image-gallery-2.jpg")
-                .default,
+                ,
           },
           {
             id: 3,
             imageM:
               require("../../assets/product-xx99-mark-two-headphones/mobile/image-gallery-3.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-xx99-mark-two-headphones/tablet/image-gallery-3.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-xx99-mark-two-headphones/desktop/image-gallery-3.jpg")
-                .default,
+                ,
           },
         ],
         suggestions: [
@@ -200,13 +200,13 @@ export const products = {
             name: "XX99 MARK I",
             imageM:
               require("../../assets/shared/mobile/image-xx99-mark-one-headphones.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/shared/tablet/image-xx99-mark-one-headphones.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/shared/desktop/image-xx99-mark-one-headphones.jpg")
-                .default,
+                ,
             path: "/products/headphones/xx99-mark-i",
           },
           {
@@ -214,24 +214,24 @@ export const products = {
             name: "XX59",
             imageM:
               require("../../assets/shared/mobile/image-xx59-headphones.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/shared/tablet/image-xx59-headphones.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/shared/desktop/image-xx59-headphones.jpg")
-                .default,
+                ,
             path: "/products/headphones/xx59",
           },
           {
             id: 3,
             name: "ZX9 SPEAKER",
             imageM: require("../../assets/shared/mobile/image-zx9-speaker.jpg")
-              .default,
+              ,
             imageT: require("../../assets/shared/tablet/image-zx9-speaker.jpg")
-              .default,
+              ,
             imageD: require("../../assets/shared/desktop/image-zx9-speaker.jpg")
-              .default,
+              ,
             path: "/products/speakers/zx9",
           },
         ],
@@ -243,13 +243,13 @@ export const products = {
         id: 1,
         imageM:
           require("../../assets/product-xx59-headphones/mobile/image-product.jpg")
-            .default,
+            ,
         imageT:
           require("../../assets/product-xx59-headphones/tablet/image-product.jpg")
-            .default,
+            ,
         imageD:
           require("../../assets/product-xx59-headphones/desktop/image-product.jpg")
-            .default,
+            ,
         title: false,
         name: "XX59 HEADPHONES",
         description:
@@ -268,7 +268,7 @@ export const products = {
         ],
         carts: {
           id: 3,
-          image: require("../../assets/cart/image-xx59-headphones.jpg").default,
+          image: require("../../assets/cart/image-xx59-headphones.jpg"),
           name: "XX59",
           price: 899,
           quantity: 1,
@@ -278,37 +278,37 @@ export const products = {
             id: 1,
             imageM:
               require("../../assets/product-xx59-headphones/mobile/image-gallery-1.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-xx59-headphones/tablet/image-gallery-1.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-xx59-headphones/desktop/image-gallery-1.jpg")
-                .default,
+                ,
           },
           {
             id: 2,
             imageM:
               require("../../assets/product-xx59-headphones/mobile/image-gallery-2.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-xx59-headphones/tablet/image-gallery-2.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-xx59-headphones/desktop/image-gallery-2.jpg")
-                .default,
+                ,
           },
           {
             id: 3,
             imageM:
               require("../../assets/product-xx59-headphones/mobile/image-gallery-3.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-xx59-headphones/mobile/image-gallery-3.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-xx59-headphones/mobile/image-gallery-3.jpg")
-                .default,
+                ,
           },
         ],
         suggestions: [
@@ -317,13 +317,13 @@ export const products = {
             name: "XX99 MARK II",
             imageM:
               require("../../assets/shared/mobile/image-xx99-mark-two-headphones.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/shared/tablet/image-xx99-mark-two-headphones.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/shared/desktop/image-xx99-mark-two-headphones.jpg")
-                .default,
+                ,
             path: "/products/headphones/xx99-mark-ii",
           },
           {
@@ -331,24 +331,24 @@ export const products = {
             name: "XX99 MARK I",
             imageM:
               require("../../assets/shared/mobile/image-xx99-mark-one-headphones.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/shared/tablet/image-xx99-mark-one-headphones.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/shared/desktop/image-xx99-mark-one-headphones.jpg")
-                .default,
+                ,
             path: "/products/headphones/xx99-mark-i",
           },
           {
             id: 3,
             name: "ZX9 SPEAKER",
             imageM: require("../../assets/shared/mobile/image-zx9-speaker.jpg")
-              .default,
+              ,
             imageT: require("../../assets/shared/tablet/image-zx9-speaker.jpg")
-              .default,
+              ,
             imageD: require("../../assets/shared/desktop/image-zx9-speaker.jpg")
-              .default,
+              ,
             path: "/products/speakers/zx9",
           },
         ],
@@ -361,13 +361,13 @@ export const products = {
         id: 1,
         imageM:
           require("../../assets/product-zx9-speaker/mobile/image-product.jpg")
-            .default,
+            ,
         imageT:
           require("../../assets/product-zx9-speaker/tablet/image-product.jpg")
-            .default,
+            ,
         imageD:
           require("../../assets/product-zx9-speaker/desktop/image-product.jpg")
-            .default,
+            ,
         title: true,
         name: "ZX9 SPEAKER",
         description:
@@ -387,7 +387,7 @@ export const products = {
         ],
         carts: {
           id: 4,
-          image: require("../../assets/cart/image-zx9-speaker.jpg").default,
+          image: require("../../assets/cart/image-zx9-speaker.jpg"),
           name: "ZX9",
           price: 4500,
           quantity: 1,
@@ -397,37 +397,37 @@ export const products = {
             id: 1,
             imageM:
               require("../../assets/product-zx9-speaker/mobile/image-gallery-1.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-zx9-speaker/tablet/image-gallery-1.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-zx9-speaker/desktop/image-gallery-1.jpg")
-                .default,
+                ,
           },
           {
             id: 2,
             imageM:
               require("../../assets/product-zx9-speaker/mobile/image-gallery-2.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-zx9-speaker/tablet/image-gallery-2.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-zx9-speaker/desktop/image-gallery-2.jpg")
-                .default,
+                ,
           },
           {
             id: 3,
             imageM:
               require("../../assets/product-zx9-speaker/mobile/image-gallery-3.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-zx9-speaker/tablet/image-gallery-3.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-zx9-speaker/desktop/image-gallery-3.jpg")
-                .default,
+                ,
           },
         ],
         suggestions: [
@@ -435,11 +435,11 @@ export const products = {
             id: 1,
             name: "ZX7 SPEAKER",
             imageM: require("../../assets/shared/mobile/image-zx7-speaker.jpg")
-              .default,
+              ,
             imageT: require("../../assets/shared/tablet/image-zx7-speaker.jpg")
-              .default,
+              ,
             imageD: require("../../assets/shared/desktop/image-zx7-speaker.jpg")
-              .default,
+              ,
             path: "/products/speakers/zx7",
           },
           {
@@ -447,13 +447,13 @@ export const products = {
             name: "XX99 MARK I",
             imageM:
               require("../../assets/shared/mobile/image-xx99-mark-one-headphones.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/shared/tablet/image-xx99-mark-one-headphones.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/shared/desktop/image-xx99-mark-one-headphones.jpg")
-                .default,
+                ,
             path: "/products/headphones/xx99-mark-i",
           },
           {
@@ -461,13 +461,13 @@ export const products = {
             name: "XX59",
             imageM:
               require("../../assets/shared/mobile/image-xx59-headphones.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/shared/tablet/image-xx59-headphones.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/shared/desktop/image-xx59-headphones.jpg")
-                .default,
+                ,
             path: "/products/headphones/xx59",
           },
         ],
@@ -479,13 +479,13 @@ export const products = {
         id: 1,
         imageM:
           require("../../assets/product-zx7-speaker/mobile/image-product.jpg")
-            .default,
+            ,
         imageT:
           require("../../assets/product-zx7-speaker/tablet/image-product.jpg")
-            .default,
+            ,
         imageD:
           require("../../assets/product-zx7-speaker/desktop/image-product.jpg")
-            .default,
+            ,
         title: false,
         name: "ZX7 SPEAKER",
         description:
@@ -505,7 +505,7 @@ export const products = {
         ],
         carts: {
           id: 5,
-          image: require("../../assets/cart/image-zx7-speaker.jpg").default,
+          image: require("../../assets/cart/image-zx7-speaker.jpg"),
           name: "ZX7",
           price: 3500,
           quantity: 1,
@@ -515,37 +515,37 @@ export const products = {
             id: 1,
             imageM:
               require("../../assets/product-zx7-speaker/mobile/image-gallery-1.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-zx7-speaker/tablet/image-gallery-1.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-zx7-speaker/desktop/image-gallery-1.jpg")
-                .default,
+                ,
           },
           {
             id: 2,
             imageM:
               require("../../assets/product-zx7-speaker/mobile/image-gallery-2.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-zx7-speaker/tablet/image-gallery-2.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-zx7-speaker/desktop/image-gallery-2.jpg")
-                .default,
+                ,
           },
           {
             id: 3,
             imageM:
               require("../../assets/product-zx7-speaker/mobile/image-gallery-3.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-zx7-speaker/tablet/image-gallery-3.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-zx7-speaker/desktop/image-gallery-3.jpg")
-                .default,
+                ,
           },
         ],
         suggestions: [
@@ -553,11 +553,11 @@ export const products = {
             id: 1,
             name: "ZX9 SPEAKER",
             imageM: require("../../assets/shared/mobile/image-zx9-speaker.jpg")
-              .default,
+              ,
             imageT: require("../../assets/shared/tablet/image-zx9-speaker.jpg")
-              .default,
+              ,
             imageD: require("../../assets/shared/desktop/image-zx9-speaker.jpg")
-              .default,
+              ,
             path: "/products/speakers/zx9",
           },
           {
@@ -565,13 +565,13 @@ export const products = {
             name: "XX99 MARK I",
             imageM:
               require("../../assets/shared/mobile/image-xx99-mark-one-headphones.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/shared/tablet/image-xx99-mark-one-headphones.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/shared/desktop/image-xx99-mark-one-headphones.jpg")
-                .default,
+                ,
             path: "/products/headphones/xx99-mark-i",
           },
           {
@@ -579,13 +579,13 @@ export const products = {
             name: "XX59",
             imageM:
               require("../../assets/shared/mobile/image-xx59-headphones.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/shared/tablet/image-xx59-headphones.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/shared/desktop/image-xx59-headphones.jpg")
-                .default,
+                ,
             path: "/products/headphones/xx59",
           },
         ],
@@ -598,13 +598,13 @@ export const products = {
         id: 1,
         imageM:
           require("../../assets/product-yx1-earphones/mobile/image-product.jpg")
-            .default,
+            ,
         imageT:
           require("../../assets/product-yx1-earphones/tablet/image-product.jpg")
-            .default,
+            ,
         imageD:
           require("../../assets/product-yx1-earphones/desktop/image-product.jpg")
-            .default,
+            ,
         title: true,
         name: "YX1 WIRELESS EARPHONES",
         description:
@@ -624,7 +624,7 @@ export const products = {
         ],
         carts: {
           id: 6,
-          image: require("../../assets/cart/image-yx1-earphones.jpg").default,
+          image: require("../../assets/cart/image-yx1-earphones.jpg"),
           name: "YX1",
           price: 599,
           quantity: 1,
@@ -634,37 +634,37 @@ export const products = {
             id: 1,
             imageM:
               require("../../assets/product-yx1-earphones/mobile/image-gallery-1.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-yx1-earphones/tablet/image-gallery-1.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-yx1-earphones/desktop/image-gallery-1.jpg")
-                .default,
+                ,
           },
           {
             id: 2,
             imageM:
               require("../../assets/product-yx1-earphones/mobile/image-gallery-2.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-yx1-earphones/tablet/image-gallery-2.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-yx1-earphones/desktop/image-gallery-2.jpg")
-                .default,
+                ,
           },
           {
             id: 3,
             imageM:
               require("../../assets/product-yx1-earphones/mobile/image-gallery-3.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/product-yx1-earphones/tablet/image-gallery-3.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/product-yx1-earphones/desktop/image-gallery-3.jpg")
-                .default,
+                ,
           },
         ],
         suggestions: [
@@ -672,11 +672,11 @@ export const products = {
             id: 1,
             name: "ZX9 SPEAKER",
             imageM: require("../../assets/shared/mobile/image-zx9-speaker.jpg")
-              .default,
+              ,
             imageT: require("../../assets/shared/tablet/image-zx9-speaker.jpg")
-              .default,
+              ,
             imageD: require("../../assets/shared/desktop/image-zx9-speaker.jpg")
-              .default,
+              ,
             path: "/products/speakers/zx9",
           },
           {
@@ -684,13 +684,13 @@ export const products = {
             name: "XX99 MARK I",
             imageM:
               require("../../assets/shared/mobile/image-xx99-mark-one-headphones.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/shared/tablet/image-xx99-mark-one-headphones.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/shared/desktop/image-xx99-mark-one-headphones.jpg")
-                .default,
+                ,
             path: "/products/headphones/xx99-mark-i",
           },
           {
@@ -698,13 +698,13 @@ export const products = {
             name: "XX59",
             imageM:
               require("../../assets/shared/mobile/image-xx59-headphones.jpg")
-                .default,
+                ,
             imageT:
               require("../../assets/shared/tablet/image-xx59-headphones.jpg")
-                .default,
+                ,
             imageD:
               require("../../assets/shared/desktop/image-xx59-headphones.jpg")
-                .default,
+                ,
             path: "/products/headphones/xx59",
           },
         ],
