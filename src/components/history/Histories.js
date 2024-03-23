@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import History from "./History";
 import Header from "../products/Headphones/sub-components/Header";
 import Footer from "../home/sub-components/Footer";
@@ -16,7 +16,7 @@ function Histories() {
   const userState = useSelector((state) => state.user.user);
   const [orderHistory, SetorderHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const history = useHistory();
+  const navigator = useNavigate();
 
   useEffect(() => {
     const cancelToken = axios.CancelToken;
@@ -81,7 +81,7 @@ function Histories() {
           </div>
           <Button
             onClick={() =>
-              setTimeout(() => history.push("categories/headphones"), 300)
+              setTimeout(() => navigator("categories/headphones"), 300)
             }
           >
             Click here to start buying products
@@ -103,7 +103,7 @@ function Histories() {
         </div>
       </div>
       <Footer />
-      <Redirect to={userState ? "/history" : "/"} />
+      <Navigate to={userState ? "/history" : "/"} />
     </div>
   );
 }

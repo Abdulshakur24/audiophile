@@ -12,7 +12,7 @@ import {
   increaseQuantityyx1,
   decreaseQuantityyx1,
 } from "../../../app-redux/features/Products";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 function YX1() {
   const { earphones } = useSelector((state) => state.products.products);
   const user = useSelector((state) => state.user.user);
@@ -29,7 +29,7 @@ function YX1() {
       <Products />
       <Description />
       <Footer />
-      <Redirect to={user ? "/products/earphones/yx1" : "/register"} />
+      <Navigate to={user ? "/products/earphones/yx1" : "/register"} />
     </div>
   );
 }

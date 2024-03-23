@@ -7,7 +7,7 @@ import Products from "../../home/sub-components/Products";
 import Description from "../../home/sub-components/Description";
 import Footer from "../../home/sub-components/Footer";
 import { useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function Speakers() {
   const { speakers } = useSelector((state) => state.products.categories);
@@ -21,7 +21,7 @@ function Speakers() {
       <Products />
       <Description />
       <Footer />
-      <Redirect to={user ? "/categories/speakers" : "/register"} />
+      <Navigate to={user ? "/categories/speakers" : "/register"} />
     </div>
   );
 }

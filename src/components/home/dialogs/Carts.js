@@ -6,7 +6,7 @@ import {
   loadCartsFromSessionStorage,
   emptyTheCart,
 } from "../../../app-redux/features/Carts";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import useReactSimpleMatchMedia from "react-simple-matchmedia";
 import HistoryIcon from "@mui/icons-material/History";
@@ -18,7 +18,7 @@ function Carts() {
   const isCartOpen = useSelector((state) => state.dialogs.isCartOpen);
   const cartsArr = useSelector((state) => state.carts.carts);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigator = useNavigate();
 
   useEffect(() => {
     const cartsFromSessionStorage = sessionStorage.getItem("carts");
@@ -35,7 +35,7 @@ function Carts() {
   };
 
   const handleActivity = () => {
-    history.push("/checkout");
+    navigator("/checkout");
     dispatch(openOrCloseCart(false));
   };
 
@@ -43,10 +43,11 @@ function Carts() {
 
   if (queryMedia("(max-width: 40em)"))
     isCartOpen ? disableBodyScroll(document) : enableBodyScroll(document);
+  
   else enableBodyScroll(document);
 
   const handleHistory = () => {
-    history.push("/history");
+    navigator("/navigator");
     dispatch(openOrCloseCart(false));
   };
 

@@ -10,7 +10,7 @@ import Description from "./sub-components/Description";
 //import dialogs
 import Menu from "./dialogs/Menu";
 import Carts from "./dialogs/Carts";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function Home() {
@@ -26,7 +26,7 @@ function Home() {
       <Galleries />
       <Description />
       <Footer />
-      <Redirect to={user ? "/" : "/register"} />
+      <Navigate to={user ? "/" : "/register"} />
     </div>
   );
 }

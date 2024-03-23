@@ -3,12 +3,12 @@ import React from "react";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { useDispatch, useSelector } from "react-redux";
 import { openOrCloseMenu } from "../../../app-redux/features/Dialogs";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 function Menu() {
   const isMenuOpen = useSelector((state) => state.dialogs.isMenuOpen);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigator = useNavigate();
   return (
     <div
       onClick={() => dispatch(openOrCloseMenu(false))}
@@ -19,7 +19,7 @@ function Menu() {
           <div
             className="headphones box"
             onClick={() => {
-              history.push("/categories/headphones");
+              navigator("/categories/headphones");
               dispatch(openOrCloseMenu(false));
             }}
           >
@@ -32,7 +32,7 @@ function Menu() {
           <div
             className="speakers box"
             onClick={() => {
-              history.push("/categories/speakers");
+              navigator("/categories/speakers");
               dispatch(openOrCloseMenu(false));
             }}
           >
@@ -45,7 +45,7 @@ function Menu() {
           <div
             className="earphones box"
             onClick={() => {
-              history.push("/categories/earphones");
+              navigator("/categories/earphones");
               dispatch(openOrCloseMenu(false));
             }}
           >

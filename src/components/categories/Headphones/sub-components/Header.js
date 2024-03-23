@@ -5,12 +5,12 @@ import {
   openOrCloseMenu,
 } from "../../../../app-redux/features/Dialogs";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 function Header({ title }) {
   const isMenuOpen = useSelector((state) => state.dialogs.isMenuOpen);
   const isCartOpen = useSelector((state) => state.dialogs.isCartOpen);
-  const history = useHistory();
+  const navigator = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -27,18 +27,18 @@ function Header({ title }) {
               <li></li>
               <li></li>
             </ul>
-            <h1 onClick={() => history.push("/")}>audiophile</h1>
+            <h1 onClick={() => navigator("/")}>audiophile</h1>
           </div>
           <div className="middle hide-for-tablet">
             <ul>
-              <li onClick={() => history.push("/")}>HOME</li>
-              <li onClick={() => history.push("/categories/headphones")}>
+              <li onClick={() => navigator("/")}>HOME</li>
+              <li onClick={() => navigator("/categories/headphones")}>
                 HEADPHONES
               </li>
-              <li onClick={() => history.push("/categories/speakers")}>
+              <li onClick={() => navigator("/categories/speakers")}>
                 SPEAKERS
               </li>
-              <li onClick={() => history.push("/categories/earphones")}>
+              <li onClick={() => navigator("/categories/earphones")}>
                 EARPHONES
               </li>
             </ul>

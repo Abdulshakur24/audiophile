@@ -1,8 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Banner() {
-  const history = useHistory();
+  const navigator = useNavigate();
   return (
     <section className="home-banner">
       <div className="banner-titles">
@@ -21,7 +21,7 @@ function Banner() {
           </p>
         </div>
         <div className="banner-title d">
-          <button onClick={() => history.push("/categories/headphones")}>
+          <button onClick={() => navigator("/categories/headphones")}>
             SEE PRODUCT
           </button>
         </div>

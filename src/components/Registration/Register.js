@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import {
   createStyles,
   makeStyles,
-  createMuiTheme,
+  createTheme,
   ThemeProvider,
 } from "@material-ui/core/styles";
 import Logo from "../../assets/audiophile.svg";
@@ -11,7 +11,7 @@ import axios from "../../axios";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "../../app-redux/features/User";
 import { LoadingButton } from "@mui/lab";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import GoogleIcon from "@mui/icons-material/Google";
 
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: "#d87d4a",
@@ -41,8 +41,8 @@ const controller = new AbortController();
 function Register() {
   const classes = useStyles();
   const [userLogin, setUserLogin] = useState({
-    lg_email: "",
-    lg_password: "",
+    lg_email: "ashakur@gmail.com",
+    lg_password: "testing@12345",
   });
   const [userRegister, setUserRegister] = useState({
     rg_name: "",
@@ -61,108 +61,6 @@ function Register() {
   const isProduction = process.env.NODE_ENV === "production";
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const token = sessionStorage.getItem("token");
-    axios.defaults.headers.common = {
-      ...axios.defaults.headers.common,
-      Authorization: `Bearer ${token}`,
-    };
-
-    if (token) {
-      setLgLoading(true);
-      setRgLoading(true);
-
-      axios
-        .post(
-          "/token",
-          { token },
-          { method: "POST", signal: controller.signal }
-        )
-        .then((response) => {
-          const data = response.data;
-          sessionStorage.setItem("token", data?.token);
-          toastifyInfo(`Welcome back ${data.name}!`);
-          setLgLoading(false);
-          setRgLoading(false);
-          dispatch(loadUser(data));
-        })
-        .catch((error) => {
-          setLgLoading(false);
-          setRgLoading(false);
-          toastifyError(error.response?.data);
-        });
-    }
-    return () => {
-      controller.abort();
-    };
-  }, [dispatch]);
-
-  useEffect(() => {
-    setLgLoading(true);
-    setRgLoading(true);
-
-    axios
-      .get("/auth/credentials", { signal: controller.signal })
-      .then((response) => {
-        const data = response.data;
-        sessionStorage.setItem("token", data?.token);
-        toastifyInfo(`Welcome ${data.name}!`);
-        setLgLoading(false);
-        setRgLoading(false);
-        dispatch(loadUser(data));
-      })
-      .catch((error) => {
-        setLgLoading(false);
-        setRgLoading(false);
-        error.response?.data && toastifyError(error.response?.data);
-      });
-
-    return () => {
-      controller.abort();
-    };
-  }, [dispatch]);
-
-  useEffect(() => {
-    const loginAsGuest = () => {
-      const login = () => {
-        setUserLogin({
-          lg_email: "guest@gmail.com",
-          lg_password: "guest1234",
-        });
-        const handleSubmitGuest = () => {
-          setLgLoading(true);
-          // axios
-          //   .post("/user/login", {
-          //     lg_email: "guest@gmail.com",
-          //     lg_password: "guest1234",
-          //   })
-          //   .then((response) => {
-          const data = { token: "ey", name: "Ashakur", email: "ashakur.js24@gmail.com" }
-          sessionStorage.setItem("token", data.token);
-          toastifyInfo(`Welcome ${data.name}!`);
-          setLgLoading(false);
-          dispatch(loadUser(data));
-          // })
-          // .catch((error) => {
-          //   setLgLoading(false);
-          //   toastifyError(error.response?.data);
-          // });
-        };
-        handleSubmitGuest();
-      };
-
-      toastifyInfo(
-        "Feeling lazy to sign up? Click here to sign in as a Guest",
-        login,
-        5000,
-        "top-right"
-      );
-    };
-
-    if (lg_loading && rg_loading && !Boolean(sessionStorage.getItem("token")))
-      return setTimeout(() => loginAsGuest(), 2000);
-  }, [dispatch, lg_loading, rg_loading]);
 
   const toastifyError = (error) => {
     toast.error(error, {
@@ -205,22 +103,21 @@ function Register() {
   const handleSubmitLogin = (e) => {
     e?.preventDefault();
     setLgLoading(true);
-    axios
-      .post("/user/login", userLogin)
-      .then(({ data }) => {
-        sessionStorage.setItem("token", data.token);
-        toastifyInfo(`Welcome ${data.name}!`);
-        setLgLoading(false);
-        dispatch(loadUser(data));
-      })
-      .catch(({ response }) => {
-        setLgLoading(false);
-        toastifyError(response?.data);
-      });
+    // axios
+    //   .post("/user/login", userLogin)
+    //   .then(({ data }) => {
+      const data = { name: "Ashakur", email: "ashakur.js24@gmail.com", token: "ey" }
+      sessionStorage.setItem("token", data.token);
+    toastifyInfo(`Welcome ${data.name}!`);
+    setLgLoading(false);
+    dispatch(loadUser(data));
+    // })
+    // .catch(({ response }) => {
+    // });
   };
 
   const handleSubmitRegister = (e) => {
-    e.preventDefault();
+    e?.preventDefault();
     setRgLoading(true);
 
     axios
@@ -296,11 +193,6 @@ function Register() {
                   Login
                 </LoadingButton>
 
-                <h2>OR</h2>
-
-                <LoadingButton loading={lg_loading} onClick={navigate}>
-                  <GoogleIcon className="googleIcon" /> CONTINUE WITH GOOGLE
-                </LoadingButton>
               </form>
             ) : (
               <form onSubmit={handleSubmitRegister}>
@@ -354,17 +246,13 @@ function Register() {
                   Register
                 </LoadingButton>
 
-                <h2>OR</h2>
 
-                <LoadingButton loading={rg_loading} onClick={navigate}>
-                  <GoogleIcon className="googleIcon" /> CONTINUE WITH GOOGLE
-                </LoadingButton>
               </form>
             )}
           </div>
         </div>
       </ThemeProvider>
-      <Redirect to={user ? "/" : "/register"} />
+      <Navigate to={user ? "/" : "/register"} />
     </div>
   );
 }

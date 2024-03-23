@@ -2,10 +2,10 @@ import React from "react";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import TwitterIcon from "@material-ui/icons/Twitter";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 
 function Footer() {
-  const history = useHistory();
+  const navigator = useNavigate();
 
   return (
     <footer>
@@ -17,20 +17,20 @@ function Footer() {
               <p>audiophile</p>
               <ul className="hide-for-large-desktop">
                 <li>
-                  <h3 onClick={() => history.push("/")}>HOME</h3>
+                  <h3 onClick={() => navigator("/")}>HOME</h3>
                 </li>
                 <li>
-                  <h3 onClick={() => history.push("/categories/headphones")}>
+                  <h3 onClick={() => navigator("/categories/headphones")}>
                     HEADPHONES
                   </h3>
                 </li>
                 <li>
-                  <h3 onClick={() => history.push("/categories/speakers")}>
+                  <h3 onClick={() => navigator("/categories/speakers")}>
                     SPEAKERS
                   </h3>
                 </li>
                 <li>
-                  <h3 onClick={() => history.push("/categories/earphones")}>
+                  <h3 onClick={() => navigator("/categories/earphones")}>
                     EARPHONES
                   </h3>
                 </li>
@@ -54,20 +54,20 @@ function Footer() {
           <div className="xlarge hide-for-desktop-down">
             <ul className="hide-for-desktop-down">
               <li>
-                <h3 onClick={() => history.push("/")}>HOME</h3>
+                <h3 onClick={() => navigator("/")}>HOME</h3>
               </li>
               <li>
-                <h3 onClick={() => history.push("/categories/headphones")}>
+                <h3 onClick={() => navigator("/categories/headphones")}>
                   HEADPHONES
                 </h3>
               </li>
               <li>
-                <h3 onClick={() => history.push("/categories/speakers")}>
+                <h3 onClick={() => navigator("/categories/speakers")}>
                   SPEAKERS
                 </h3>
               </li>
               <li>
-                <h3 onClick={() => history.push("/categories/earphones")}>
+                <h3 onClick={() => navigator("/categories/earphones")}>
                   EARPHONES
                 </h3>
               </li>

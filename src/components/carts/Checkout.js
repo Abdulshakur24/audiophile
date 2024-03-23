@@ -7,14 +7,14 @@ import Footer from "../home/sub-components/Footer";
 import {
   createStyles,
   makeStyles,
-  createMuiTheme,
+  createTheme,
 } from "@material-ui/core/styles";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import Modal from "./Modal";
 import Payment from "./Payment";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) =>
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: "#d87d4a",
@@ -40,7 +40,7 @@ const theme = createMuiTheme({
 
 function Checkout() {
   const classes = useStyles();
-  const history = useHistory();
+  const navigator = useNavigate();
 
   const [stripePromise] = useState(() =>
     loadStripe(
@@ -58,7 +58,7 @@ function Checkout() {
         <Modal />
         <div className="container">
           <div className="max-width">
-            <p onClick={() => history.goBack()} className="goBack">
+            <p onClick={() => navigator(-1)} className="goBack">
               Go Back
             </p>
           </div>
@@ -76,7 +76,7 @@ function Checkout() {
         </div>
       </div>
       <Footer />
-      <Redirect to={user ? "/checkout" : "/register"} />
+      <Navigate to={user ? "/checkout" : "/register"} />
     </div>
   );
 }

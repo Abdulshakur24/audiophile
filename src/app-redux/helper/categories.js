@@ -2,6 +2,9 @@ export const categories = {
   headphones: [
     {
       id: 1,
+      imagea:
+        require("../../assets/category-headphones/mobile/image-xx99-mark-two.jpg")
+          .default,
       imageM:
         require("../../assets/category-headphones/mobile/image-xx99-mark-two.jpg")
           .default,
@@ -107,3 +110,5 @@ export const categories = {
     },
   ],
 };
+
+console.log(`categories: `, categories.headphones)

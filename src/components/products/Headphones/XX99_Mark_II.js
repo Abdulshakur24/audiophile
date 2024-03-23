@@ -12,7 +12,7 @@ import {
   increaseQuantityxx99MarkII,
 } from "../../../app-redux/features/Products";
 
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 function XX99_Mark_II() {
   const { headphones } = useSelector((state) => state.products.products);
   const user = useSelector((state) => state.user.user);
@@ -29,7 +29,7 @@ function XX99_Mark_II() {
       <Products />
       <Description />
       <Footer />
-      <Redirect to={user ? "/products/headphones/xx99-mark-ii" : "/register"} />
+      <Navigate to={user ? "/products/headphones/xx99-mark-ii" : "/register"} />
     </div>
   );
 }

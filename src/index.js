@@ -1,23 +1,30 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./app-redux/store";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-import evn from "dotenv";
+import { ToastContainer } from "react-toastify";
 
-evn.config();
-ReactDOM.render(
+// import evn from "dotenv";
+
+// evn.config();
+
+const root = ReactDOM.createRoot(
+  document.getElementById("root")
+);
+
+root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ToastContainer />
       <Router>
         <App />
       </Router>
     </Provider>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

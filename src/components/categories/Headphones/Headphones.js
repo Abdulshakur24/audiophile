@@ -8,7 +8,7 @@ import Menu from "../../home/dialogs/Menu";
 import Cart from "../../home/dialogs/Carts";
 import Details from "./sub-components/Details";
 import { useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function Headphones() {
   const { headphones } = useSelector((state) => state.products.categories);
@@ -22,7 +22,7 @@ function Headphones() {
       <Products />
       <Description />
       <Footer />
-      <Redirect to={user ? "/categories/headphones" : "/register"} />
+      <Navigate to={user ? "/categories/headphones" : "/register"} />
     </div>
   );
 }

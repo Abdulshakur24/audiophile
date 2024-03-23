@@ -1,8 +1,8 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Detail({ id, image, title, heading, description, path, grid }) {
-  const history = useHistory();
+  const navigator = useNavigate();
   return (
     <div id="detail" className={`detail`}>
       <div className={`left ${grid}`}>
@@ -13,7 +13,7 @@ function Detail({ id, image, title, heading, description, path, grid }) {
         {title && <h6>NEW PRODUCT</h6>}
         <h4>{heading}</h4>
         <p>{description}</p>
-        <button onClick={() => history.push(path)}>SEE PRODUCT</button>
+        <button onClick={() => navigator(path)}>SEE PRODUCT</button>
       </div>
     </div>
   );

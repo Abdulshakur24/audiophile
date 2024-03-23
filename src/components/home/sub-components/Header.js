@@ -6,14 +6,14 @@ import {
   openOrCloseCart,
   openOrCloseMenu,
 } from "../../../app-redux/features/Dialogs";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/audiophile.svg";
 
 function Header() {
   const isMenuOpen = useSelector((state) => state.dialogs.isMenuOpen);
   const isCartOpen = useSelector((state) => state.dialogs.isCartOpen);
 
-  const history = useHistory();
+  const navigator = useNavigate();
   const dispatch = useDispatch();
 
   return (
@@ -30,27 +30,27 @@ function Header() {
           </ul>
 
           <div className="title ">
-            <img src={logo} onClick={() => history.push("/")} alt="" />
+            <img src={logo} onClick={() => navigator("/")} alt="" />
           </div>
         </div>
 
         <div className="links hide-for-tablet">
           <ul>
             <li>
-              <h3 onClick={() => history.push("/")}>HOME</h3>
+              <h3 onClick={() => navigator("/")}>HOME</h3>
             </li>
             <li>
-              <h3 onClick={() => history.push("/categories/headphones")}>
+              <h3 onClick={() => navigator("/categories/headphones")}>
                 HEADPHONES
               </h3>
             </li>
             <li>
-              <h3 onClick={() => history.push("/categories/speakers")}>
+              <h3 onClick={() => navigator("/categories/speakers")}>
                 SPEAKERS
               </h3>
             </li>
             <li>
-              <h3 onClick={() => history.push("/categories/earphones")}>
+              <h3 onClick={() => navigator("/categories/earphones")}>
                 EARPHONES
               </h3>
             </li>

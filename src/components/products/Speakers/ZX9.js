@@ -12,7 +12,7 @@ import {
   increaseQuantityzx9,
   decreaseQuantityzx9,
 } from "../../../app-redux/features/Products";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 function ZX9() {
   const { speakers } = useSelector((state) => state.products.products);
   const user = useSelector((state) => state.user.user);
@@ -29,7 +29,7 @@ function ZX9() {
       <Products />
       <Description />
       <Footer />
-      <Redirect to={user ? "/products/speakers/zx9" : "/register"} />
+      <Navigate to={user ? "/products/speakers/zx9" : "/register"} />
     </div>
   );
 }

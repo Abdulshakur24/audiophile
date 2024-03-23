@@ -1,13 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { addOrUpdateCart } from "../../../../app-redux/features/Carts";
 import useReactSimpleMatchMedia from "react-simple-matchmedia";
 import { toast } from "react-toastify";
 import { openOrCloseCart } from "../../../../app-redux/features/Dialogs";
 
 function Product(props) {
-  const history = useHistory();
+  const navigator = useNavigate();
   const dispatch = useDispatch();
 
   const addToCart = () => {
@@ -27,7 +27,7 @@ function Product(props) {
   return (
     <div className="product">
       <div className="positioning">
-        <p className="goBack" onClick={() => history.goBack()}>
+        <p className="goBack" onClick={() => navigator(-1)}>
           Go Back
         </p>
       </div>
@@ -100,7 +100,7 @@ function Product(props) {
                 <div key={id} className="suggestions">
                   <img src={currentImage} alt="" />
                   <h4>{name}</h4>
-                  <button onClick={() => history.push(path)}>
+                  <button onClick={() => navigator(path)}>
                     SEE PRODUCT
                   </button>
                 </div>

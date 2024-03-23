@@ -3,19 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { openOrCloseCheckoutModal } from "../../app-redux/features/Dialogs";
 import ovalSvg from "../../assets/Oval.svg";
 import { head } from "lodash";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Modal() {
   const isModalOpen = useSelector((state) => state.dialogs.isCheckoutModalOpen);
   const cartsArr = useSelector((state) => state.carts.carts);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigator = useNavigate();
 
   const fetchFirstElement = () => head(cartsArr);
 
   const goBackHome = () => {
     dispatch(openOrCloseCheckoutModal(false));
-    history.push("/history");
+    navigator("/history");
   };
 
   const getTotal = () =>

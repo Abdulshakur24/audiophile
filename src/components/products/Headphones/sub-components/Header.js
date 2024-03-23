@@ -1,6 +1,6 @@
 import React from "react";
 import { ReactComponent as CartIcon } from "../../../../assets/cartLogo.svg";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   openOrCloseCart,
@@ -8,8 +8,8 @@ import {
 } from "../../../../app-redux/features/Dialogs";
 
 function Header() {
-  const history = useHistory();
-  const path = (path) => history.push(path);
+  const navigator = useNavigate();
+  const path = (path) => navigator(path);
   const { isMenuOpen } = useSelector((state) => state.dialogs);
   const { isCartOpen } = useSelector((state) => state.dialogs);
   const dispatch = useDispatch();
