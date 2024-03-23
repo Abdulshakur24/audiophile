@@ -132,22 +132,22 @@ function Register() {
         });
         const handleSubmitGuest = () => {
           setLgLoading(true);
-          axios
-            .post("/user/login", {
-              lg_email: "guest@gmail.com",
-              lg_password: "guest1234",
-            })
-            .then((response) => {
-              const data = response.data;
-              sessionStorage.setItem("token", data.token);
-              toastifyInfo(`Welcome ${data.name}!`);
-              setLgLoading(false);
-              dispatch(loadUser(data));
-            })
-            .catch((error) => {
-              setLgLoading(false);
-              toastifyError(error.response?.data);
-            });
+          // axios
+          //   .post("/user/login", {
+          //     lg_email: "guest@gmail.com",
+          //     lg_password: "guest1234",
+          //   })
+          //   .then((response) => {
+          const data = { token: "ey", name: "Ashakur", email: "ashakur.js24@gmail.com" }
+          sessionStorage.setItem("token", data.token);
+          toastifyInfo(`Welcome ${data.name}!`);
+          setLgLoading(false);
+          dispatch(loadUser(data));
+          // })
+          // .catch((error) => {
+          //   setLgLoading(false);
+          //   toastifyError(error.response?.data);
+          // });
         };
         handleSubmitGuest();
       };
@@ -177,7 +177,7 @@ function Register() {
 
   const toastifyInfo = (
     info,
-    func = () => {},
+    func = () => { },
     autoClose = 3000,
     position = "top-center"
   ) => {
@@ -239,9 +239,9 @@ function Register() {
   };
 
   const navigate = () =>
-    (window.location.href = isProduction
-      ? "https://audiophile-e-commerce.herokuapp.com/auth/google"
-      : "http://localhost:5010/auth/google");
+  (window.location.href = isProduction
+    ? "https://audiophile-e-commerce.herokuapp.com/auth/google"
+    : "http://localhost:5010/auth/google");
 
   return (
     <div className="register">
